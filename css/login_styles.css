@@ -92,6 +92,8 @@ p{
 }
 
 #welcome-box{
+  border: 2px solid darkgray;
+  border-radius: 25px;
   position: absolute;
   width: 70%;
   top: 30%;
@@ -108,7 +110,7 @@ p{
 }
 
 #green-line{
-  margin-top: 4px;
+  margin-top: 6px;
   display: block;
   border: 2px solid #20843E;
   color:#20843E;
@@ -165,10 +167,5 @@ p{
     width: auto;
   }
 }
-
-
-
-
-
 
 
