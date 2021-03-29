@@ -53,13 +53,13 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  padding: 0 10px;
+  padding-left:80vw;
+  position:absolute;
 }
 
 .container .navbar ul {
@@ -70,7 +70,6 @@ body {
   flex-wrap: wrap;
   list-style: none;
   margin: 0;
-  padding-left: 70vw;
 }
 
 .container .navbar ul li a {
@@ -124,7 +123,7 @@ body {
   height: 2px;
 }
 
-@media only screen and (max-width: 650px) {
+@media screen and (max-width: 1020px) {
   .container {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
@@ -159,10 +158,10 @@ body {
     -webkit-transition: left .3s;
     -o-transition: left .3s;
     transition: left .3s;
+    align-items: left;
   }
 
   .container .navbar ul li a {
-    padding-right: 10px;
     font-size: 16px;
     width:100vw;
     height: auto;
@@ -178,6 +177,7 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    
   }
 
   .container .navbar ._Menus-show {
