@@ -1,0 +1,229 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  overflow: hidden;
+}
+
+#background-image{
+  background: black;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/*********************************************************************CONTENT *************/
+.container{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.name{
+  background: #3AC563;
+  display: block;
+  width: 100%;
+  height: 10vh;
+}
+h1{
+  font-family: 'open-sans', sans-serif;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+}
+
+.top-container{
+  margin-top: 2%;
+  display: flex;
+  position: relative;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 200px;
+  background: transparent;
+}
+
+.top-box{
+  position: relative;
+  width: 300px;
+  height: 200px;
+  border-radius: 22px;
+  /* border: 2px solid green; */
+  background: white;
+}
+
+.top-box h2{
+  position: relative;
+  font-family: 'open-sans', sans-serif;
+  font-weight: lighter;
+  background: #3AC563;
+  text-align: center;
+  top: 71%;
+  padding-bottom: 10px;
+  border-radius: 0px 0px 20px 20px;
+}
+
+.bottom-container{
+  margin-top: 5%;
+  display: flex;
+  position: relative;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 200px;
+  background: transparent;
+}
+
+.bottom-box{
+  position: relative;
+  width: 300px;
+  height: 200px;
+  border-radius: 22px;
+  /* border: 2px solid green; */
+  background: white;
+}
+
+.bottom-box h2{
+  position: relative;
+  font-family: 'open-sans', sans-serif;
+  font-weight: lighter;
+  background: #3AC563;
+  text-align: center;
+  top: 71%;
+  padding-bottom: 10px;
+  border-radius: 0px 0px 20px 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/****************************************************NAV BAR********************/
+.slogo{
+  background: black;
+  transition: 0.3s;
+  height: inherit;
+  position: relative;
+}
+
+.small-logo {
+  height: inherit;
+  position: absolute;
+}
+
+.topnav{
+  background: black;
+  height: 50px;
+}
+
+.nav-links{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  list-style: none;
+  height: 100%;
+  padding-right: 5vw;
+  margin-left: 45vw;
+}
+
+.nav-links li{
+  padding-left: 3em;
+  display: inline;
+}
+
+.nav-links li a{
+  font-family: 'Montserrat', serif;
+  color: white;
+  border-bottom-color: black;
+  text-decoration: none;
+  transition: ease-in 0.2s;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.nav-links li a:hover{
+  padding-bottom: 10px;
+  font-size: 20px;
+  border-bottom: 2px solid black;
+  transition: ease-out 0.2s;
+  color: #ffffff;
+  background-color: rgba(23, 23, 23, 0.9);
+}
+
+/*********************************************************MEDIA QUERY**************************************/
+@media screen and (max-width: 768px){
+
+.top-container{
+  flex-wrap: wrap;
+  height: 70%;
+}
+.bottom-container{
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.top-box{
+  flex-direction: column;
+}
+.bottom-box{
+  flex-direction: column;
+}
+
+  .nav-links{
+    justify-content: space-evenly;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    padding-top: 2em;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+    font-family: sans-serif;
+    font-weight: bolder;
+    position: fixed;
+    background: #3AC563;
+    clip-path: circle(100px at 90% -20%);
+    -webkit-clip-path: circle(100px at 90% -20%);
+    transition: all 0.5s ease-out;
+  }
+
+  .nav-links li{
+    margin-bottom: 4em;
+    margin-right: 2em;
+  }
+
+   .nav-links.open{
+    clip-path: circle(1000px at 90% 10%);
+    -webkit-clip-path: circle(1000px at 90% 10%);
+  }
+
+  .line{
+    width: 30px;
+    height: 3px;
+    background: white;
+    margin: 5px;
+  }
+
+  .topnav{
+    position: relative;
+  }
+
+  .sidebar{
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    top: 50%;
+    transform: translate(-5%,-50%);
+    z-index: 2;
+  }
+}
