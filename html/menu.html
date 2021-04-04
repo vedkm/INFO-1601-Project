@@ -9,7 +9,7 @@
     <link href="../css/menu.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body onload="onPageLoad()">
     <nav class="topnav">
       <div class="sidebar">
         <div class="line"></div>
@@ -19,8 +19,8 @@
       <div class="slogo">
         <img class="small-logo" src="../images/small-logo.png" alt="Small logo">
         <ul class="nav-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="login.html">Login</a></li>
+          <li><a href="/html/menu.html">Home</a></li>
+          <li><a href="/index.html">Logout</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
       </div>
@@ -34,18 +34,25 @@
         <div class="top-container">
             <div class="top-box">
               <img src="" alt="Top-10">
-              <h2>Top 10's</h2>
+              <h2>
+                <a href="option1.html">Top 10s</a>
+              </h2>
             </div>
             <div class="top-box">
               <img src="" alt="Genre pie-chart">
-              <h2>Genre Pie Chart</h2>
+              <h2>
+                <a href="/html/option2.html">
+                  Genres
+                </a></h2>
             </div>
         </div>
 
         <div class="bottom-container">
             <div class="bottom-box">
               <img src="" alt="Top3 Decades">
-              <h2>Top 3 Decades</h2>
+              <h2>
+                <a href="option3.html">Decades</a>
+              </h2>
             </div>
             <div class="bottom-box">
               <img src="" alt="Playlist Generator">
@@ -53,10 +60,13 @@
             </div>
             <div class="bottom-box">
               <img src="" alt="Music Discovery">
-              <h2>Music Discovery</h2>
+              <h2>
+                <a href="/html/option5.html">Music Discovery</a>
+              </h2>
             </div>
         </div>
   </div>
-  <script src="../js/login_script.js"></script>
   </body>
+
+  <script src="/js/menu.js"></script>
 </html>

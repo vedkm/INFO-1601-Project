@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,30 +8,71 @@
   <link href="../css/style.css" rel="stylesheet" type="text/css" />
   <title>SpotStats</title>
 </head>
-<body>
+
+<body onload="initLists()">
   <div class="container">
     <div class="logo">
-        <a href="#"><img src="../images/logo.png" alt="logo"></a>
+      <a href="#"><img src="../images/small-logo.png" alt="logo"></a>
     </div>
     <div class="navbar">
       <div class="icon-bar" onclick="Show()">
         <i></i>
         <i></i>
         <i></i>
-  </div>
+      </div>
 
-<ul id="nav-lists">
-    <li class="close"><span onclick="Hide()">×</span></li>
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="login.html">Login</a></li>
-    <li><a href="#">Button</a></li>
-</ul>
+      <ul id="nav-lists">
+        <li class="close"><span onclick="Hide()">×</span></li>
+        <li><a href="menu.html">Home</a></li>
+        <li><a href="/index.html">Logout</a></li>
+        <li><a href="#">Button</a></li>
+      </ul>
 
-</div>
-</div>
-<div class="body">
-  <p>Option 1</p>
+    </div>
   </div>
-  <script src="../js/script.js"></script>
+  <div class="body">
+    <div>
+        <h1>Top 10 Artists</h1>
+        <div id="top-options">
+          <input type="button" value="All Time" onclick="getTop('artists', 'long_term', renderList)">
+          <input type="button" value="Last 6 Months" onclick="getTop('artists', 'medium_term', renderList)">
+          <input type="button" value="Last 4 Weeks" onclick="getTop('artists', 'short_term', renderList)">
+        </div>
+        <div id="top-artists">
+          <!--Inserts an ordered list here-->
+        </div>
+    </div>
+
+    <br><hr>
+
+    <div>
+      <h1>Top 10 Songs</h1>
+      <div id="top-options">
+        <input type="button" value="All Time" onclick="getTop('tracks', 'long_term', renderList)">
+        <input type="button" value="Last 6 Months" onclick="getTop('tracks', 'medium_term', renderList)">
+        <input type="button" value="Last 4 Weeks" onclick="getTop('tracks', 'short_term', renderList)">
+      </div>
+      <div id="top-tracks">
+        <!--Inserts an ordered list here-->
+      </div>
+    </div>
+
+    <div>
+      <h1>Top Genres (WIP)</h1>
+      <div id="top-genres">
+
+      </div>
+    </div>
+
+  </div>
 </body>
+
+<script>
+  function initLists() {
+    getTop('artists', 'long_term', renderList); 
+    getTop('tracks', 'long_term', renderList);
+    getTop('genres', 'long_term', renderList);
+  }
+</script>
+<script src="/js/menu.js"></script>
 </html>

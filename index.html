@@ -1,50 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
-  <title>SpotStats</title>
-</head>
-<body>
-  <div class="container">
-    <div class="logo">
-        <a href="#"><img src="images/small-logo.png" alt="logo"></a>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>SpotStat Login</title>
+    <link rel="icon" href="../images/favicon2.png">
+    <link href="../css/login_styles.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <section id="left-section" class="item">
+        <img src="../images/background.png" id="background-image" alt="Background Image">
+
+        <div id="welcome-box">
+          <div id="welcome-text">
+            <h1>Welcome to SpotStat</h1>
+            <hr id="green-line">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad accusantium tempore dolores quos, iusto sint molestias modi quia debitis ducimus architecto labore dolor necessitatibus animi facilis odio praesentium inventore? Nam?</p>
+              <a href="about.html" id="know-more-button">Know More</a>
+            
+          </div>
+        </div>
+
+        
+
+      </section>
+
+      <section id="right-section" class="item">
+        <div class="container2">
+          <img src="../images/main-logo.png" id="logo" alt="Logo">
+          <h1>Sign In</h1>
+          <hr id="white-line">
+          <input type="button" value="Log in with Spotify" onclick="authUser()">
+        </div>
+        
+      </section>
     </div>
-    <div class="navbar">
-      <div class="icon-bar" onclick="Show()">
-        <i></i>
-        <i></i>
-        <i></i>
-  </div>
-
-<ul id="nav-lists">
-    <li class="close"><span onclick="Hide()">×</span></li>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="html/login.html">Login</a></li>
-    <li><a href="#">Button</a></li>
-</ul>
-
-</div>
-</div>
-<div class="body">
-    <section class="option">
-      <a href="html/option1.html">Option1</a>                     
-    </section>
-    <section class="option">
-      <a href="html/option2.html">Option2</a>                      
-    </section>
-    <section class="option"> 
-      <a href="html/option3.html">Option3</a>                     
-    </section>
-    <section class="option">
-      <a href="html/option4.html">Option4</a>                      
-    </section>
-    <section class="option"> 
-      <a href="html/option5.html">Option5</a>                     
-    </section>
-  </div>
-    <script src="js/script.js"></script>
   </body>
+
+  <script src="/js/app.js"></script>
 </html>
+
