@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="../css/style.css" rel="stylesheet" type="text/css" />
-  <title>SpotStats</title>
-</head>
 
 <body onload="initLists()">
-  <div class="container">
+  <div class="nav-container">
     <div class="logo">
       <a href="#"><img src="../images/small-logo.png" alt="logo"></a>
     </div>
@@ -27,44 +17,33 @@
         <li><a href="/index.html">Logout</a></li>
         <li><a href="#">Button</a></li>
       </ul>
-
     </div>
   </div>
-  <div class="body">
-    <div>
-        <h1>Top 10 Artists</h1>
-        <div id="top-options">
-          <input type="button" value="All Time" onclick="getTop('artists', 'long_term', renderList)">
-          <input type="button" value="Last 6 Months" onclick="getTop('artists', 'medium_term', renderList)">
-          <input type="button" value="Last 4 Weeks" onclick="getTop('artists', 'short_term', renderList)">
+
+  <div class="container">
+    <section id="left-section">
+        <div class="sidebar-body">
+                <a href="option1.html" id="selected">Top 10's</a>
+                <hr class="sidebar-line">
+
+                <a href="option2.html">Genre Pie Chart</a>
+                <hr class="sidebar-line">
+
+                <a href="option3.html">Top 3 Decades</a>
+                <hr class="sidebar-line">
+
+                <a href="option4.html">Playlist Generator</a>
+                <hr class="sidebar-line">
+
+                <a href="option5.html">Music Discovery</a>
+            </ul>
         </div>
-        <div id="top-artists">
-          <!--Inserts an ordered list here-->
-        </div>
-    </div>
+    </section>
+ 
+    <section id="right-section">
+    </section>
+   </div>
 
-    <br><hr>
-
-    <div>
-      <h1>Top 10 Songs</h1>
-      <div id="top-options">
-        <input type="button" value="All Time" onclick="getTop('tracks', 'long_term', renderList)">
-        <input type="button" value="Last 6 Months" onclick="getTop('tracks', 'medium_term', renderList)">
-        <input type="button" value="Last 4 Weeks" onclick="getTop('tracks', 'short_term', renderList)">
-      </div>
-      <div id="top-tracks">
-        <!--Inserts an ordered list here-->
-      </div>
-    </div>
-
-    <div>
-      <h1>Top Genres (WIP)</h1>
-      <div id="top-genres">
-
-      </div>
-    </div>
-
-  </div>
 </body>
 
 <script>
