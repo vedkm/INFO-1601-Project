@@ -5,7 +5,13 @@
 }
 
 body{
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+
+h1{
+  font-family: 'Josefin Sans', sans-serif;
+  color: white;
+  text-align: center;
 }
 
 #background-image{
@@ -14,6 +20,7 @@ body{
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: -1;
 }
 /*********************************************************************CONTENT *************/
 .container{
@@ -23,126 +30,57 @@ body{
 }
 
 .name{
-  background: #3AC563;
+  background: #0B6326;
   display: block;
   width: 100%;
-  height: 10vh;
-}
-h1{
-  font-family: 'open-sans', sans-serif;
-  background-color: transparent;
-  color: white;
-  text-align: center;
-}
-
-.top-container{
-  margin-top: 2%;
-  display: flex;
-  position: relative;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 200px;
-  background: transparent;
-}
-
-.top-box{
-  position: relative;
-  width: 300px;
-  height: 200px;
-  border-radius: 22px;
-  /* border: 2px solid green; */
-  background: white;
-}
-
-.top-box h2{
-  position: relative;
-  font-family: 'open-sans', sans-serif;
-  font-weight: lighter;
-  background: #3AC563;
-  text-align: center;
-  top: 71%;
+  height: fit-content;
+  padding-top: 10px;
   padding-bottom: 10px;
-  border-radius: 0px 0px 20px 20px;
 }
-
-.bottom-container{
-  margin-top: 5%;
-  display: flex;
-  position: relative;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 200px;
-  background: transparent;
-}
-
-.bottom-box{
-  position: relative;
-  width: 300px;
-  height: 200px;
-  border-radius: 22px;
-  /* border: 2px solid green; */
-  background: white;
-}
-
-.bottom-box h2{
-  position: relative;
-  font-family: 'open-sans', sans-serif;
-  font-weight: lighter;
-  background: #3AC563;
-  text-align: center;
-  top: 71%;
-  padding-bottom: 10px;
-  border-radius: 0px 0px 20px 20px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 /****************************************************NAV BAR********************/
-.slogo{
+.topnav{
   background: black;
-  transition: 0.3s;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.slogo{
   height: inherit;
-  position: relative;
+  position: absolute;
+  left: 10%;
 }
 
 .small-logo {
   height: inherit;
-  position: absolute;
-}
-
-.topnav{
-  background: black;
-  height: 50px;
+  flex-basis: 50%;
+  align-self: baseline;
 }
 
 .nav-links{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  position: absolute;
+  top: 16px;
+  right: 10%;
   list-style: none;
-  height: 100%;
-  padding-right: 5vw;
-  margin-left: 45vw;
+  height: 50px;
+  flex-basis: 50%;
+  align-self: flex-end;
+  display: flex;
 }
 
 .nav-links li{
-  padding-left: 3em;
   display: inline;
+  padding-left: 3em;
 }
 
 .nav-links li a{
-  font-family: 'Montserrat', serif;
+  font-family: 'open-sans', sans-serif;
   color: white;
   border-bottom-color: black;
   text-decoration: none;
@@ -163,21 +101,26 @@ h1{
 /*********************************************************MEDIA QUERY**************************************/
 @media screen and (max-width: 768px){
 
-.top-container{
-  flex-wrap: wrap;
-  height: 70%;
-}
-.bottom-container{
-  flex-wrap: wrap;
-  height: 100%;
-}
+  body{
+    overflow: auto;
+  }
 
-.top-box{
-  flex-direction: column;
-}
-.bottom-box{
-  flex-direction: column;
-}
+  .top-container{
+    flex-wrap: wrap;
+    height: 70%;
+  }
+  
+  .bottom-container{
+    flex-wrap: wrap;
+    height: 100%;
+  }
+
+  .top-box{
+    flex-direction: column;
+  }
+  .bottom-box{
+    flex-direction: column;
+  }
 
   .nav-links{
     justify-content: space-evenly;
@@ -202,7 +145,7 @@ h1{
     margin-right: 2em;
   }
 
-   .nav-links.open{
+  .nav-links.open{
     clip-path: circle(1000px at 90% 10%);
     -webkit-clip-path: circle(1000px at 90% 10%);
   }
