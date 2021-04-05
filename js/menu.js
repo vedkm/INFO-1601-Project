@@ -192,32 +192,22 @@ async function getTop(type, time_range, callback) {
     var limit = 10;
     let topItems;
 
-    if (type === "genres") {
-        limit = 50;
-        var access_token = localStorage.getItem("access_token");
-
-        let endpoint = `https://api.spotify.com/v1/me/top/artists`;
-
-        let query = `?time_range=${time_range}&limit=${limit}`;
-
-        topItems = await callAPI("GET", endpoint, query);
-        //console.log(topItems);
-        console.log(endpoint);
-    } else {
-        
-        var access_token = localStorage.getItem("access_token");
+   
+    var access_token = localStorage.getItem("access_token");
     
-        let endpoint = `https://api.spotify.com/v1/me/top/${type}`;
+    let endpoint = `https://api.spotify.com/v1/me/top/${type}`;
     
-        let query = `?time_range=${time_range}&limit=${limit}`;
+    let query = `?time_range=${time_range}&limit=${limit}`;
     
-        topItems = await callAPI("GET", endpoint, query);
-        console.log(endpoint);
+    topItems = await callAPI("GET", endpoint, query);
+    console.log(endpoint);
 
-    }
+    
 
 
-    callback(topItems, type);
+    //callback(topItems, type);
+    console.log("Top 10 " + type + ": ");
+    console.log(topItems);
 
 }
 
@@ -254,6 +244,7 @@ function getDecades(data) {
         //console.log(item.album.release_date);
     }
 
+    console.log("Decades: ");
     console.log(decades);
 
     return decades;
@@ -332,6 +323,7 @@ function getDatesAdded (data) {
 
     //dates is an array of date objects
     //each date is the date an album was added
+    
     console.log(dates);
 
     return dates;
@@ -351,6 +343,7 @@ function getReleaseDates (data) {
             //console.log(item.album.release_date);
         }
     }
+    console.log("Release Dates: ");
     console.log(dates);
     
     return dates;
@@ -492,6 +485,7 @@ async function callAPI(method, endpoint, query) {
     return data;
 }
 
+
 // HAMBURGER CODE
 console.log(window.navigator.cookieEnabled);
 console.log(window.navigator.online);
@@ -504,15 +498,16 @@ console.log(window.location.href);
 console.log(window.location.protocol);
 console.log(window.location.hostname);
 
+
 function redirect(url){
   window.location.assign(url);
 }
-
+/*
 window.onload = function(event){
    console.log("Page has loaded");
 
 }
-
+*/
 const sidebar = document.querySelector('.sidebar');
 const navLinks = document.querySelector('.nav-links');
 const Links = document.querySelector('.nav-links li');
