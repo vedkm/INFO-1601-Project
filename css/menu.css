@@ -5,7 +5,7 @@
 }
 
 body{
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 h1{
@@ -25,6 +25,9 @@ h1{
 /*********************************************************************CONTENT *************/
 .container{
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 100px;
   width: 100%;
   height: 100%;
 }
@@ -34,8 +37,37 @@ h1{
   display: block;
   width: 100%;
   height: fit-content;
+  position: fixed;
+  top: 50px;
   padding-top: 10px;
   padding-bottom: 10px;
+  z-index: 3;
+}
+
+.top-container{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  height: 200px;
+  margin-top: 40px;
+}
+
+.bottom-container{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  height: 200px;
+  margin-top: 60px;
+}
+
+.top-container img{
+  height: inherit;
+  width: 325px;
+}
+
+.bottom-container img{
+  height: inherit;
+  width: 325px;
 }
 
 /****************************************************NAV BAR********************/
@@ -49,6 +81,7 @@ h1{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  z-index: 2;
 }
 
 .slogo{
@@ -107,18 +140,19 @@ h1{
 
   .top-container{
     flex-wrap: wrap;
-    height: 70%;
   }
   
   .bottom-container{
     flex-wrap: wrap;
-    height: 100%;
   }
 
   .top-box{
+    margin-bottom: 10px;
     flex-direction: column;
   }
+
   .bottom-box{
+    margin-bottom: 10px;
     flex-direction: column;
   }
 
@@ -158,7 +192,88 @@ h1{
   }
 
   .topnav{
-    position: relative;
+    position: absolute;
+  }
+
+  .name{
+    position: absolute;
+  }
+
+  .sidebar{
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    top: 50%;
+    transform: translate(-5%,-50%);
+    z-index: 2;
+  }
+}
+
+@media screen and (max-width: 667px){
+  body{
+    overflow: auto;
+  }
+
+  .top-container{
+    flex-wrap: wrap;
+    margin-bottom: 135px;
+  }
+  
+  .bottom-container{
+    flex-wrap: wrap;
+  }
+
+  .top-box{
+    margin-bottom: 10px;
+    flex-direction: column;
+  }
+
+  .bottom-box{
+    margin-bottom: 10px;
+    flex-direction: column;
+  }
+
+  .nav-links{
+    justify-content: space-evenly;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    padding-top: 2em;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+    font-family: sans-serif;
+    font-weight: bolder;
+    position: fixed;
+    background: #3AC563;
+    clip-path: circle(100px at 90% -20%);
+    -webkit-clip-path: circle(100px at 90% -20%);
+    transition: all 0.5s ease-out;
+  }
+
+  .nav-links li{
+    margin-bottom: 4em;
+    margin-right: 2em;
+  }
+
+  .nav-links.open{
+    clip-path: circle(1000px at 90% 10%);
+    -webkit-clip-path: circle(1000px at 90% 10%);
+  }
+
+  .line{
+    width: 30px;
+    height: 3px;
+    background: white;
+    margin: 5px;
+  }
+
+  .topnav{
+    position: absolute;
+  }
+
+  .name{
+    position: absolute;
   }
 
   .sidebar{
