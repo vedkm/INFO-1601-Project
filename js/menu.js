@@ -5,123 +5,6 @@ function onPageLoad () {
     }
 }
 
-function handleRedirect() {
-    let code = getCode();
-    console.log(code);
-
-    fetchAccessToken(code);
-
-    window.history.pushState("", "", redirect_uri);
-}
-
-const client_id = localStorage.getItem("client_id");
-const client_secret = localStorage.getItem("client_secret");
-const redirect_uri = localStorage.getItem("redirect_uri");
-//const scopes = "user-read-private user-library-read user-top-read playlist-modify-private playlist-modify-public";
-
-function fetchAccessToken(code) {
-    let body = "grant_type=authorization_code";
-    body += "&code=" + code;
-    body += "&redirect_uri=" + encodeURI(redirect_uri);
-    body += "&client_id=" + client_id;
-    body += "&client_secret=" + client_secret;
-    
-    callAuthApi(body);
-}
-
-const token = "https://accounts.spotify.com/api/token";
-
-function callAuthApi(body) {
-    
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", token, true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(client_id + ":" + client_secret));
-    xhr.send(body);
-    xhr.onload = handleAuthResponse;
-    
-    
-    /*
-    fetch (token, {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded', 
-            'Authorization': 'Basic ' + btoa(client_id + ":" + client_secret)
-        },
-        method: 'POST',
-        body: body
-        
-    })
-    .then (function (response) {
-        if (response.status === 200) {
-            var data = JSON.parse(response.responseText);
-            console.log(data);
-            var data = JSON.parse(response.responseText);
-            if (data.access_token != undefined) {
-                access_token = data.access_token;
-                localStorage.setItem("access_token", access_token);
-            }
-            if (data.refresh_token != undefined) {
-                refresh_token = data.refresh_token;
-                localStorage.setItem("refresh_token", refresh_token);
-            }
-            onPageLoad();
-        }
-        else if (response.status === 401) {
-            refreshAccessToken ();
-        }
-        else {
-            console.log(response.responseText);
-            alert(response.responseText);
-        }
-    })
-    */
-    
-}
-
-function handleAuthResponse() {
-    if (this.status === 200) {
-        var data = JSON.parse(this.responseText);
-        console.log(data);
-        var data = JSON.parse(this.responseText);
-        if (data.access_token != undefined) {
-            access_token = data.access_token;
-            localStorage.setItem("access_token", access_token);
-        }
-        if (data.refresh_token != undefined) {
-            refresh_token = data.refresh_token;
-            localStorage.setItem("refresh_token", refresh_token);
-        }
-        onPageLoad();
-    }
-    else if (this.status === 401) {
-        refreshAccessToken ();
-    }
-    else {
-        console.log(this.responseText);
-        alert(this.responseText);
-    }
-}
-
-function refreshAccessToken () {
-    refresh_token = localStorage.getItem("refresh_token");
-    let body = "grant_type=refresh_token";
-    body += "&refresh_token=" + refresh_token;
-    body += "&client_id=" + client_id;
-    
-    callAuthApi(body);
-}
-
-function getCode () {
-    let code = null;
-    const qString = window.location.search;
-    if (qString.length > 0) {
-        const urlParams = new URLSearchParams (qString);
-        code = urlParams.get('code');
-    }
-
-    //console.log("code");
-    return code;
-}
 
 
 //--------------ALT CODE
@@ -191,24 +74,34 @@ function renderList(data, type) {
 async function getTop(type, time_range, callback) {
     var limit = 10;
     let topItems;
-
-   
-    var access_token = localStorage.getItem("access_token");
     
-    let endpoint = `https://api.spotify.com/v1/me/top/${type}`;
+    if (type === "genres") {
+        limit = 50;
+        var access_token = localStorage.getItem("access_token");
+
+        let endpoint = `https://api.spotify.com/v1/me/top/artists`;
+
+        let query = `?time_range=${time_range}&limit=${limit}`;
+
+        topItems = await callAPI("GET", endpoint, query);
+        //console.log(topItems);
+        console.log(endpoint);
+    } else {
+        
+        var access_token = localStorage.getItem("access_token");
     
-    let query = `?time_range=${time_range}&limit=${limit}`;
+        let endpoint = `https://api.spotify.com/v1/me/top/${type}`;
+        
+        let query = `?time_range=${time_range}&limit=${limit}`;
     
-    topItems = await callAPI("GET", endpoint, query);
-    console.log(endpoint);
-
+        topItems = await callAPI("GET", endpoint, query);
+        console.log(endpoint);
+        
+    }
     
 
-
-    //callback(topItems, type);
-    console.log("Top 10 " + type + ": ");
-    console.log(topItems);
-
+    callback(topItems, type);
+    
 }
 
 function getArtistImage(id) {
@@ -235,7 +128,7 @@ function getDecades(data) {
     let dates = getReleaseDates(data);
 
     let decades = new Array();
-
+    
     for (let date of dates) {
         //console.log(group);
         let year = date.slice(0, 4);
@@ -244,7 +137,6 @@ function getDecades(data) {
         //console.log(item.album.release_date);
     }
 
-    console.log("Decades: ");
     console.log(decades);
 
     return decades;
@@ -298,7 +190,7 @@ function getArtistDiscovery(data) {
         let howmany = identicalArtists.length;
         artists.splice(index+1, howmany-1);
         artists.splice(index, 1, identicalArtists[0]);
-
+        
         console.log(identicalArtists);
     }
 
@@ -323,9 +215,8 @@ function getDatesAdded (data) {
 
     //dates is an array of date objects
     //each date is the date an album was added
-    
     console.log(dates);
-
+    
     return dates;
 }
 
@@ -343,7 +234,6 @@ function getReleaseDates (data) {
             //console.log(item.album.release_date);
         }
     }
-    console.log("Release Dates: ");
     console.log(dates);
     
     return dates;
@@ -372,7 +262,7 @@ function getAllArtists (data) {
         //console.log(group);
         for (let item of group.items) {
             
-            //gets all artists, INCLUDE REPEATS
+            //gets all artists, INCLUDES REPEATS
             let current = item.album.artists[0];
             let found = artists.includes(current.name);
             if (!found) {
@@ -390,10 +280,10 @@ function getAllArtists (data) {
 
         //first, get an array of the elements in artists between i and i+50
         //consider using .map
-
+        
         let query = `?ids=`;
         let temp = await callAPI("GET", endpoint, query);
-
+        
         //console.log(temp);
 
         offset += 50;
@@ -447,11 +337,11 @@ async function getEntireLibrary (type, callback) {
         //console.log(items);
     }
     */
-    
+   
     console.log(items);
-
+    
     callback(items);
-
+    
     return items;
     //items is an array of all tracks/albums (grouped by 50 or less)
     //each index in items array contains 50 or less items
@@ -463,7 +353,7 @@ async function getNumItems(type) {
     let query =  `?limit=1`;
     let item = await callAPI("GET", endpoint, query);
     console.log(item);
-
+    
     return item.total;
 }
 
@@ -480,38 +370,130 @@ async function callAPI(method, endpoint, query) {
         console.log("Fetch Error: " + error);
     })
     let data = await response.json();
-    console.log(`${endpoint}: ` + response.status);
+    console.log(`At Call API: ` + response.status);
 
+    if (response.status === 401) {
+        refreshAccessToken();
+    }
+    
     return data;
 }
 
+function handleRedirect() {
+    let code = getCode();
+    console.log(code);
 
-// HAMBURGER CODE
-console.log(window.navigator.cookieEnabled);
-console.log(window.navigator.online);
-console.log(navigator.appVersion);
-console.log(navigator.userAgent)
-console.log(navigator.platform);
+    fetchAccessToken(code);
 
-
-console.log(window.location.href);
-console.log(window.location.protocol);
-console.log(window.location.hostname);
-
-
-function redirect(url){
-  window.location.assign(url);
+    window.history.pushState("", "", redirect_uri);
 }
-/*
-window.onload = function(event){
-   console.log("Page has loaded");
+
+const client_id = localStorage.getItem("client_id");
+const client_secret = localStorage.getItem("client_secret");
+const redirect_uri = localStorage.getItem("redirect_uri");
+//const scopes = "user-read-private user-library-read user-top-read playlist-modify-private playlist-modify-public";
+
+function fetchAccessToken(code) {
+    let body = "grant_type=authorization_code";
+    body += "&code=" + code;
+    body += "&redirect_uri=" + encodeURI(redirect_uri);
+    body += "&client_id=" + client_id;
+    body += "&client_secret=" + client_secret;
+
+    callAuthApi(body);
+}
+
+const token = "https://accounts.spotify.com/api/token";
+
+function callAuthApi(body) {
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", token, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(client_id + ":" + client_secret));
+    xhr.send(body);
+    xhr.onload = handleAuthResponse;
+
+
+    /*
+    fetch (token, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded', 
+            'Authorization': 'Basic ' + btoa(client_id + ":" + client_secret)
+        },
+        method: 'POST',
+        body: body
+        
+    })
+    .then (function (response) {
+        if (response.status === 200) {
+            var data = JSON.parse(response.responseText);
+            console.log(data);
+            var data = JSON.parse(response.responseText);
+            if (data.access_token != undefined) {
+                access_token = data.access_token;
+                localStorage.setItem("access_token", access_token);
+            }
+            if (data.refresh_token != undefined) {
+                refresh_token = data.refresh_token;
+                localStorage.setItem("refresh_token", refresh_token);
+            }
+            onPageLoad();
+        }
+        else if (response.status === 401) {
+            refreshAccessToken ();
+        }
+        else {
+            console.log(response.responseText);
+            alert(response.responseText);
+        }
+    })
+    */
 
 }
-*/
-const sidebar = document.querySelector('.sidebar');
-const navLinks = document.querySelector('.nav-links');
-const Links = document.querySelector('.nav-links li');
 
-sidebar.addEventListener('click', ()=> {
-  navLinks.classList.toggle('open');
-});
+function handleAuthResponse() {
+    if (this.status === 200) {
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+        var data = JSON.parse(this.responseText);
+        if (data.access_token != undefined) {
+            access_token = data.access_token;
+            localStorage.setItem("access_token", access_token);
+        }
+        if (data.refresh_token != undefined) {
+            refresh_token = data.refresh_token;
+            localStorage.setItem("refresh_token", refresh_token);
+        }
+        onPageLoad();
+    }
+    else if (this.status === 401) {
+        console.log('At handleAuthResponse: ' + this.status);
+        refreshAccessToken();
+    }
+    else {
+        console.log('At handleAuthResponse: ' + this.responseText);
+        alert(this.responseText);
+    }
+}
+
+function refreshAccessToken() {
+    refresh_token = localStorage.getItem("refresh_token");
+    let body = "grant_type=refresh_token";
+    body += "&refresh_token=" + refresh_token;
+    body += "&client_id=" + client_id;
+
+    callAuthApi(body);
+}
+
+function getCode() {
+    let code = null;
+    const qString = window.location.search;
+    if (qString.length > 0) {
+        const urlParams = new URLSearchParams(qString);
+        code = urlParams.get('code');
+    }
+
+    //console.log("code");
+    return code;
+}
