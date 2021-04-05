@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="../css/option2.css" rel="stylesheet" type="text/css" />
+  <title>SpotStats</title>
+</head>
+
+<body onload="initLists()">
+  <nav class="topnav">
+    <div class="sidebar">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="slogo">
+      <img class="small-logo" src="../images/small-logo.png" alt="Small logo">
+    </div>
+    <ul class="nav-links">
+        <li><a href="menu.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html">Log Out</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <section id="left-section">
+        <div class="sidebar-body">
+                <a href="option1.html" id="selected">Top 10's</a>
+                <hr class="sidebar-line">
+
+                <a href="option2.html">Genre Pie Chart</a>
+                <hr class="sidebar-line">
+
+                <a href="option3.html">Top 3 Decades</a>
+                <hr class="sidebar-line">
+
+                <a href="option4.html">Playlist Generator</a>
+                <hr class="sidebar-line">
+
+                <a href="option5.html">Music Discovery</a>
+            </ul>
+        </div>
+    </section>
+ 
+    <section id="right-section">
+    </section>
+   </div>
+
+</body>
+
+<script>
+  function initLists() {
+    getTop('artists', 'long_term', renderList); 
+    getTop('tracks', 'long_term', renderList);
+    getTop('genres', 'long_term', renderList);
+  }
+</script>
+<script src="../js/menu.js"></script>
+</html>
