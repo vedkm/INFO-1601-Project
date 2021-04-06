@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="../css/option1.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Open+Sans&display=swap" rel="stylesheet">
   <title>SpotStats</title>
 </head>
 
@@ -20,6 +22,11 @@
       <img class="small-logo" src="../images/small-logo.png" alt="Small logo">
     </div>
     <ul class="nav-links">
+        <li><a href="option1.html" class="sidebar-links" id="hamburger-selected">Top 10'S</a></li>
+        <li><a href="option2.html" class="sidebar-links">Genre Pie Chart</a></li>
+        <li><a href="option3.html" class="sidebar-links">Top Decades</a></li>
+        <li><a href="option4.html" class="sidebar-links">Music Discovery</a></li>
+        <li><a href="option5.html" class="sidebar-links">Playlist Generator</a></li>
         <li><a href="menu.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="../index.html">Log Out</a></li>
@@ -28,25 +35,84 @@
 
   <div class="container">
     <section id="left-section">
-        <div class="sidebar-body">
-                <a href="option1.html" id="selected">Top 10's</a>
-                <hr class="sidebar-line">
+      <div id="left-section-body">
+          <div class="sidebar-body">
+            <a href="option1.html" id="selected">Top 10's</a>
+            <hr class="sidebar-line">
 
-                <a href="option2.html">Genre Pie Chart</a>
-                <hr class="sidebar-line">
+            <a href="option2.html">Genre Pie Chart</a>
+            <hr class="sidebar-line">
 
-                <a href="option3.html">Top 3 Decades</a>
-                <hr class="sidebar-line">
+            <a href="option3.html">Top Decades</a>
+            <hr class="sidebar-line">
 
-                <a href="option4.html">Playlist Generator</a>
-                <hr class="sidebar-line">
+            <a href="option4.html">Music Discovery</a>
+            <hr class="sidebar-line">
 
-                <a href="option5.html">Music Discovery</a>
-            </ul>
+            <a href="option5.html">Playlist Generator</a>
         </div>
+      </div>
+ 
     </section>
  
     <section id="right-section">
+      <div id="right-section-body">
+        <!-- Buttons -->
+        <div id="buttons">
+          <input type="button" value="Songs" class="buttonclass">
+          <input type="button" value="Artists" class="buttonclass">
+        </div>
+   
+        
+        <!-- Range Slider -->
+        <div class="slidecontainer">
+          <input type="range" min="1" max="3" value="2" class="slider" id="myRange">
+
+        </div>        
+        <div id="slide-ranges">
+              <p>Last Month</p>
+              <p>Last 6 Months</p>
+              <p>All Time</p>
+          </div>
+
+        <div id="podium">
+          <div id="third" class="top3">
+            <img src="../images/main-logo.png" alt="Song/Artist Picture" class="song-artist-pic">
+            <p class="song-artist-name">Song/ArtistName</p>
+            <div class="box" id="box3"><p>3</p></div>
+          </div>
+
+          <div id="first" class="top3">
+            <img src="../images/main-logo.png" alt="Song/Artist Picture" class="song-artist-pic">
+            <p class="song-artist-name">Song/ArtistName</p>
+            <div class="box" id="box1"><p>1</p></div>
+          </div>
+          
+          <div id="second" class="top3">
+            <img src="../images/main-logo.png" alt="Song/Artist Picture" class="song-artist-pic">
+            <p class="song-artist-name">Song/ArtistName</p>
+            <div class="box" id="box2"><p>2</p></div>
+          </div>
+        </div>
+
+        <div id="listcontainer">
+          <ol start="4" id="rest-of-list">
+          <li>Song/Artist Name</li>
+          <li>Song/Artist Name</li>
+          <li>Song/Artist Name</li>
+          <li>Song/Artist Name</li>
+          <li>Song/Artist Name</li>
+          <li>Song/Artist Name</li>
+          <li>Song/Artist Name</li>
+          </ol>
+        </div>
+        
+      </div>          
+
+
+
+
+
     </section>
    </div>
 

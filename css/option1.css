@@ -5,6 +5,10 @@
 
 body{
   overflow-x: hidden;
+  background-color: black;
+  background-image:url(../images/background.png);
+  background-repeat: repeat-y;
+  background-size:cover;
 }
 
 .topnav{
@@ -49,7 +53,7 @@ body{
 }
 
 .nav-links li a{
-  font-family: 'open-sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: white;
   border-bottom-color: black;
   text-decoration: none;
@@ -75,23 +79,30 @@ body{
 }
 
 /* The sidebar menu */
+.sidebar-links{
+  display: none;
+}
+
 .sidebar-body {
-    height: fit-content;
-    width: 18%;
-    position: fixed;
-    z-index: 1;
-    background-color: white; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    margin-top: 10%;
-    left: 1%;
+  height: fit-content;
+  width: 18%;
+  position: fixed;
+  z-index: 1;
+  background-color: white; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  margin-top: 14%;
+  left: 1%;
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
 }
 
 /* The navigation menu links */
 .sidebar-body a {
-    font-family: "open-sans", sans-serif;
-    padding: 17px 8px 17px 27px;
+    font-family: "Open Sans", sans-serif;
+    padding: 17px 8px 17px 12px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     color: black;
     text-transform: uppercase;
@@ -106,18 +117,21 @@ body{
 }
 
 #left-section{
-    flex-basis: 20%;
-    background-color: #525252;
+  flex-basis: 20%;
+  height: 100%;
+}
+
+#left-section-body{
+  position: fixed;
+  width: 20%;
+  background-color: #0B6326;
+  height: 100%;
+  top: 0%;
+  left: 0%;
 }
 
 #right-section{
-  flex-basis:    80%;
-  background-color: black;
-  background-image:url(../images/background.png);
-  background-repeat: no-repeat;
-  background-position: 100% 100%;
-  background-size:cover;
-  height:100%;
+  flex-basis:   80%;
 }
 
 #selected{
@@ -132,6 +146,185 @@ body{
 }
 
 /* END OF SIDEBAR */
+
+/* Right Section */
+
+#right-section-body{
+  margin-top: 50px;
+}
+
+#buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.buttonclass{
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 35px;
+  color: white;
+  background-color: black;
+  height: 50px;
+  width: 180px;
+  margin-left: 80px;
+  margin-right: 80px;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition-duration: 0.4s;
+}
+
+.buttonclass:hover{
+  background-color: #3AC563; /* Green */
+  color: white;
+}
+
+
+/* SLIDER */
+.slidecontainer {
+  margin: 10px auto 5px auto;
+  width: 50%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 20px; /* Specified height */
+  border-radius: 5px;
+  background: #d3d3d3; /* Green background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  border-radius: 50%;
+  background: #3AC563; /* green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  border-radius: 50%;
+  background: #3AC563; /* black background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+#slide-ranges{
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  margin: 0px auto 10px auto;
+  justify-content: space-between;
+}
+
+#slide-ranges p{
+  color: white;
+  font-size: 20px;
+  font-family: "Open Sans", sans-serif;
+}
+/* End of Slider*/
+
+/* Podium */
+
+#podium{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: 0px auto 20px auto;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.song-artist-name{
+  color: white;
+  font-size: 20px;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.top3{
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  align-items: center;
+}
+
+
+.song-artist-pic{
+  width: 15vw;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.box{
+  width: 17vw;
+  background-color: #3AC563;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box p{
+  color: white;
+  font-size: 32px;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+
+#box3{
+  height: 40px;
+}
+
+#box1{
+  height: 100px;
+}
+
+#box2{
+  height: 70px;
+}
+
+/* End of Podium */
+
+/* Rest of List */
+#listcontainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#rest-of-list{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 30px;
+  color: white;
+}
+
+#rest-of-list li{
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+/* End of 'Rest of List' */
+
+
+/* End of Right Section */
 
 *,
 *::before,
@@ -148,7 +341,19 @@ body {
 
 
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 830px) {
+  #left-section{
+    display: none;
+  }
+
+  #right-section{
+    flex-basis: 100%;
+  }
+
+  #hamburger-selected{
+    color: black;
+  }
+
   .nav-links{
     justify-content: space-evenly;
     text-align: center;
@@ -158,8 +363,6 @@ body {
     align-items: center;
     flex-direction: column;
     z-index: 1;
-    font-family: sans-serif;
-    font-weight: bolder;
     position: fixed;
     top:0;
     right: 0;
@@ -168,16 +371,27 @@ body {
     clip-path: circle(100px at 90% -200%);
     -webkit-clip-path: circle(100px at 90% -200%);
     transition: all 0.5s ease-out;
+  }     
+  
+  .nav-links li a{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bolder;
+  }
+
+  .sidebar-links{
+    display: block;
+    text-transform: uppercase;
   }
 
   .nav-links li{
-    margin-bottom: 4em;
+    margin-bottom: 2vh;
     padding-left: 0;
   }
 
-   .nav-links.open{
-    clip-path: circle(1000px at 90% -10%);
-    -webkit-clip-path: circle(1000px at 90% -10%);
+
+  .nav-links.open{
+    clip-path: circle(2000px at 90% -10%);
+    -webkit-clip-path: circle(2000px at 90% -10%);
   }
 
   .nav-links li a:hover{
@@ -207,6 +421,31 @@ body {
     transform: translate(-5%,-50%);
     z-index: 3;
   }
+
+  .buttonclass{
+    margin-left: 10px;
+    margin-right: 10px;  
+    font-size: medium;
+    height: 40px;
+    width: 30vw;
+  }
+
+  .slidecontainer {
+    width: 80%; /* Width of the outside container */
+  }
+
+  #slide-ranges{
+    width: 80%;
+  }
+
+  #slide-ranges p{
+    font-size: 1em;
+  }
+
+  .song-artist-name{
+    font-size: 1em;
+  }
+
 }
 
 .body {
