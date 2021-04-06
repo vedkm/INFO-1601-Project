@@ -421,6 +421,31 @@ body {
     transform: translate(-5%,-50%);
     z-index: 3;
   }
+
+  .buttonclass{
+    margin-left: 10px;
+    margin-right: 10px;  
+    font-size: medium;
+    height: 40px;
+    width: 30vw;
+  }
+
+  .slidecontainer {
+    width: 80%; /* Width of the outside container */
+  }
+
+  #slide-ranges{
+    width: 80%;
+  }
+
+  #slide-ranges p{
+    font-size: 1em;
+  }
+
+  .song-artist-name{
+    font-size: 1em;
+  }
+
 }
 
 .body {
