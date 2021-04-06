@@ -3,6 +3,8 @@ function onPageLoad () {
         console.log("code exists");
         handleRedirect();
     }
+
+    getUsername();
 }
 
 
@@ -473,16 +475,34 @@ function handleAuthResponse() {
             refresh_token = data.refresh_token;
             localStorage.setItem("refresh_token", refresh_token);
         }
-        onPageLoad();
+        //onPageLoad();
+        getUsername();
     }
     else if (this.status === 401) {
         console.log('At handleAuthResponse: ' + this.status);
         refreshAccessToken();
     }
+    else if (this.status === 400) {
+        window.location.href = "/index.html";
+    }
     else {
         console.log('At handleAuthResponse: ' + this.responseText);
-        alert(this.responseText);
+        //alert(this.responseText);
     }
+}
+
+async function getUsername() {
+    let endpoint = "https://api.spotify.com/v1/me";
+    let profile = await callAPI("GET", endpoint, "");
+
+    console.log(profile);
+    window.localStorage.setItem("username", profile.display_name);
+
+    let logout = document.querySelector("#logout");
+    logout.innerHTML += ` (${profile.display_name})`; 
+    //<img src="${profile.images[0].url}" style="height:25% width:25%">`;
+
+    //return profile.display_name;
 }
 
 function getCode () {
