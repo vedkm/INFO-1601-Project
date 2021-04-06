@@ -341,7 +341,7 @@ body {
 
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 830px) {
   #left-section{
     display: none;
   }
