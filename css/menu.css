@@ -225,7 +225,7 @@ img:hover{
   }
 }
 
-@media screen and (max-width: 667px){
+@media screen and (max-width: 830px){
   body{
     overflow: auto;
   }
