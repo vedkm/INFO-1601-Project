@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.js" integrity="sha512-n8DscwKN6+Yjr7rI6mL+m9nS4uCEgIrKRFcP0EOkIvzOLUyQgOjWK15hRfoCJQZe0s6XrARyXjpvGFo1w9N3xg==" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <link href="../css/option3.css" rel="stylesheet" type="text/css" />
+  <title>SpotStats</title>
+</head>
+
+<body onload="getEntireLibrary ('albums', getDecades)">
+  <nav class="topnav">
+    <div class="sidebar">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="slogo">
+      <img class="small-logo" src="../images/small-logo.png" alt="Small logo">
+    </div>
+    <ul class="nav-links">
+        <li><a href="menu.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="../index.html">Log Out</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <section id="left-section">
+        <div class="sidebar-body">
+                <a href="option1.html">Top 10's</a>
+                <hr class="sidebar-line">
+
+                <a href="option2.html">Genre Pie Chart</a>
+                <hr class="sidebar-line">
+
+                <a href="option3.html" id="selected">Top 3 Decades</a>
+                <hr class="sidebar-line">
+
+                <a href="option4.html">Playlist Generator</a>
+                <hr class="sidebar-line">
+
+                <a href="option5.html">Music Discovery</a>
+            </ul>
+        </div>
+    </section>
+ 
+    <section id="right-section">
+      <div class="chart-container" >
+        <canvas id="decadeChart" ></canvas>
+      </div>
+    </section>
+   </div>
+
+</body>
+
+<script src="../js/menu.js"></script>
+</html>
