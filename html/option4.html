@@ -11,7 +11,7 @@
   <title>SpotStats</title>
 </head>
 
-<body onload="">
+<body onload="initMusicDiscovery()">
   <nav class="topnav">
     <div class="sidebar">
       <div class="line"></div>
@@ -58,6 +58,13 @@
    </div>
 
 </body>
-
+<script>
+  function initMusicDiscovery() {
+    //let artists = getMonthsDiscovery(2021, getArtistDiscovery);
+    let artists = getEntireLibrary('albums', getArtistDiscovery);
+    let albums = getEntireLibrary('albums', getAlbumDiscovery);
+    //let albums = getMonthsDiscovery(2021, getAlbumDiscovery);
+  }
+</script>
 <script src="../js/menu.js"></script>
 </html>
