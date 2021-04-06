@@ -29,7 +29,7 @@
         <li><a href="option5.html" class="sidebar-links">Playlist Generator</a></li>
         <li><a href="menu.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="../index.html">Log Out</a></li>
+        <li><a id="logout" href="../index.html">Log Out</a></li>
     </ul>
   </nav>
 
@@ -62,5 +62,8 @@
 
 </body>
 
+<script>
+  document.querySelector("#logout").innerHTML = `Log Out (${window.localStorage.getItem("username")})`; 
+</script>
 <script src="../js/menu.js"></script>
 </html>

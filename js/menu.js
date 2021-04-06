@@ -3,43 +3,59 @@ function onPageLoad () {
         console.log("code exists");
         handleRedirect();
     }
-
-    getUsername();
 }
 
 
-
-
 function renderList(data, type) {
-    let html = "<ol>";
-    for (item of data.items) {
-        if (type === "artists") {
-            html += `<li>${item.name}</li>`
-            let imageArraySize = item.images.length;
-            //images array contains multiple images of different sizes, with the largest in the 0 position
-            //so, the smallest would be the last (array size - 1)
-            //also, the images[] object has width and height values which can be accessed by:
-            //item.images[x].width
-            html += `<img src=${item.images[imageArraySize-1].url}>`;
+
+    if (type === "artists") {
+        //first
+        let pos = document.querySelector("#first > p");
+        let img = document.querySelector("#first > img");
+        pos.innerHTML = data.items[0].name;
+        img.src = data.items[0].images[0].url;
+        //second
+        pos = document.querySelector("#second > p");
+        img = document.querySelector("#second > img");
+        pos.innerHTML = data.items[1].name;
+        img.src = data.items[1].images[0].url;
+        //third
+        pos = document.querySelector("#third > p");
+        img = document.querySelector("#third > img");
+        pos.innerHTML = data.items[2].name;
+        img.src = data.items[2].images[0].url;
+
+        let list = document.querySelector("#rest-of-list");
+        list.innerHTML = "";
+        for (i = 3; i < data.items.length; i++) {
+            //console.log(data.items[i].name);
+            list.innerHTML += `<li>${data.items[i].name}</li>`
         }
-        if (type === "tracks") {
-            html += `<li>${item.name}</li>`; 
-            //tracks do not have images, but they belong to an album object which has an images array
-            //console.log(item);
-            let imageArraySize = item.album.images.length;
-            html += `<img src=${item.album.images[imageArraySize-2].url}>`;
-        }
-        if (type === "genres") {
-            console.log(item.genres);
-            html += `<li>${item.genres}</li>`;
-        }
-        //console.log(item.images);
-        //console.log(item.name);
     }
-    html += "</ol>";
+    else if (type === "tracks") {
+        //first
+        let pos = document.querySelector("#first > p");
+        let img = document.querySelector("#first > img");
+        pos.innerHTML = data.items[0].album.name;
+        img.src = data.items[0].album.images[0].url;
+        //second
+        pos = document.querySelector("#second > p");
+        img = document.querySelector("#second > img");
+        pos.innerHTML = data.items[1].album.name;
+        img.src = data.items[1].album.images[0].url;
+        //third
+        pos = document.querySelector("#third > p");
+        img = document.querySelector("#third > img");
+        pos.innerHTML = data.items[2].album.name;
+        img.src = data.items[2].album.images[0].url;
 
-    document.querySelector("#top-"+type).innerHTML = html;
-
+        let list = document.querySelector("#rest-of-list");
+        list.innerHTML = "";
+        for (i = 3; i < data.items.length; i++) {
+            //console.log(data.items[i].name);
+            list.innerHTML += `<li>${data.items[i].album.name}</li>`
+        }
+    }
 }
 
 
@@ -48,7 +64,7 @@ async function getTop(type, time_range, callback) {
     let topItems;
 
    
-    var access_token = localStorage.getItem("access_token");
+    //var access_token = localStorage.getItem("access_token");
     
     let endpoint = `https://api.spotify.com/v1/me/top/${type}`;
     
@@ -60,7 +76,7 @@ async function getTop(type, time_range, callback) {
     
 
 
-    //callback(topItems, type);
+    callback(topItems, type);
     console.log("Top 10 " + type + ": ");
     console.log(topItems);
 
@@ -498,8 +514,8 @@ async function getUsername() {
     console.log(profile);
     window.localStorage.setItem("username", profile.display_name);
 
-    let logout = document.querySelector("#logout");
-    logout.innerHTML += ` (${profile.display_name})`; 
+    //let logout = document.querySelector("#logout");
+    //logout.innerHTML += ` (${profile.display_name})`; 
     //<img src="${profile.images[0].url}" style="height:25% width:25%">`;
 
     //return profile.display_name;

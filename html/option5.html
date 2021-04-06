@@ -11,7 +11,7 @@
   <title>SpotStats</title>
 </head>
 
-<body onload="">
+<body onload="onPageLoad()">
   <nav class="topnav">
     <div class="sidebar">
       <div class="line"></div>
@@ -29,7 +29,7 @@
         <li><a href="option5.html" class="sidebar-links" id="hamburger-selected">Playlist Generator</a></li>
         <li><a href="menu.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="../index.html">Log Out</a></li>
+        <li><a id="logout" href="../index.html">Log Out</a></li>
     </ul>
   </nav>
 
@@ -58,6 +58,8 @@
    </div>
 
 </body>
-
+<script>
+  document.querySelector("#logout").innerHTML = `Log Out (${window.localStorage.getItem("username")})`; 
+</script>
 <script src="../js/menu.js"></script>
 </html>

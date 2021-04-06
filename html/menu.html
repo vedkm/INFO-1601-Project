@@ -49,7 +49,7 @@
         <div class="bottom-container">
             <div class="bottom-box" id="option3">
               <a href="option3.html">
-                <img src="../images/Top Decades Icon.png" alt="Top 3 Decades">
+                <img src="/images/Top 3 Decades Icon.png" alt="Top 3 Decades">
               </a>
             </div>
             <div class="bottom-box" id="option4">
@@ -65,5 +65,8 @@
         </div>
   </body>
 
+  <script>
+    document.querySelector("#logout").innerHTML = `Log Out (${window.localStorage.getItem("username")})`; 
+  </script>
   <script src="../js/menu.js"></script>
 </html>
