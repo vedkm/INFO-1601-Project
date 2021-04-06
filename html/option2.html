@@ -9,7 +9,7 @@
   <title>SpotStats</title>
 </head>
 
-<body onload="initLists()">
+<body onload="getEntireLibrary('albums', getAllGenres)">
   <nav class="topnav">
     <div class="sidebar">
       <div class="line"></div>
@@ -55,12 +55,5 @@
 
 </body>
 
-<script>
-  function initLists() {
-    getTop('artists', 'long_term', renderList); 
-    getTop('tracks', 'long_term', renderList);
-    getTop('genres', 'long_term', renderList);
-  }
-</script>
 <script src="../js/menu.js"></script>
 </html>

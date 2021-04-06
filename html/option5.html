@@ -9,7 +9,7 @@
   <title>SpotStats</title>
 </head>
 
-<body onload="initLists()">
+<body onload="initMusicDiscovery()">
   <nav class="topnav">
     <div class="sidebar">
       <div class="line"></div>
@@ -51,12 +51,12 @@
    </div>
 
 </body>
-
 <script>
-  function initLists() {
-    getTop('artists', 'long_term', renderList); 
-    getTop('tracks', 'long_term', renderList);
-    getTop('genres', 'long_term', renderList);
+  function initMusicDiscovery() {
+    //let artists = getMonthsDiscovery(2021, getArtistDiscovery);
+    let artists = getEntireLibrary('albums', getArtistDiscovery);
+    let albums = getEntireLibrary('albums', getAlbumDiscovery);
+    //let albums = getMonthsDiscovery(2021, getAlbumDiscovery);
   }
 </script>
 <script src="../js/menu.js"></script>

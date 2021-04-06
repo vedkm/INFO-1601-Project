@@ -7,35 +7,6 @@ function onPageLoad () {
 
 
 
-//--------------ALT CODE
-/*
-async function requestTopArtists () {
-
-    /*
-    fetch(endpoint, {
-        headers: {
-            'Authorization' : 'Bearer ' + access_token
-        },
-        method: 'GET'
-    })
-    .then (
-        function(response) {
-            if (response.status !== 200) {
-                console.log ("issue: " + response.status);
-                return;
-            }
-
-            response.json().then(function(data) {
-                console.log(data);
-            });
-        }
-    )
-    .catch (function(err) {
-        console.log("fetch error: ", err);
-    })
-    */
-    
-//}
 
 function renderList(data, type) {
     let html = "<ol>";
@@ -73,34 +44,24 @@ function renderList(data, type) {
 async function getTop(type, time_range, callback) {
     var limit = 10;
     let topItems;
-    
-    if (type === "genres") {
-        limit = 50;
-        var access_token = localStorage.getItem("access_token");
 
-        let endpoint = `https://api.spotify.com/v1/me/top/artists`;
-
-        let query = `?time_range=${time_range}&limit=${limit}`;
-
-        topItems = await callAPI("GET", endpoint, query);
-        //console.log(topItems);
-        console.log(endpoint);
-    } else {
-        
-        var access_token = localStorage.getItem("access_token");
+   
+    var access_token = localStorage.getItem("access_token");
     
-        let endpoint = `https://api.spotify.com/v1/me/top/${type}`;
-        
-        let query = `?time_range=${time_range}&limit=${limit}`;
+    let endpoint = `https://api.spotify.com/v1/me/top/${type}`;
     
-        topItems = await callAPI("GET", endpoint, query);
-        console.log(endpoint);
-        
-    }
+    let query = `?time_range=${time_range}&limit=${limit}`;
+    
+    topItems = await callAPI("GET", endpoint, query);
+    console.log(endpoint);
+
     
 
-    callback(topItems, type);
-    
+
+    //callback(topItems, type);
+    console.log("Top 10 " + type + ": ");
+    console.log(topItems);
+
 }
 
 function getArtistImage(id) {
@@ -127,7 +88,7 @@ function getDecades(data) {
     let dates = getReleaseDates(data);
 
     let decades = new Array();
-    
+
     for (let date of dates) {
         //console.log(group);
         let year = date.slice(0, 4);
@@ -136,89 +97,35 @@ function getDecades(data) {
         //console.log(item.album.release_date);
     }
 
+    console.log("Decades: ");
     console.log(decades);
-    let decadeHead = new Array();
-    let frequency = new Array();
 
-    for(let group of decades){
-        let key=group;
-        let identicalDecades = decades.filter(function(group){
-            return key === group;
-        });
-
-        let index = decades.indexOf(group);
-        let howmany = identicalDecades.length;
-        decades.splice(index+1,howmany-1);
-        decadeHead.push(group);
-        frequency.push(identicalDecades.length);
-    }
-
-    console.log(decadeHead);
-    console.log(frequency);
-
-
-    let decadeChart=document.getElementById('decadeChart').getContext('2d');
-
-    let decChart= new Chart(decadeChart,{
-        type:'pie',
-        data:{
-            labels:decadeHead,
-            datasets:[{
-                label:'Decades',
-                data:frequency,
-                backgroundColor:[
-                    'rgb(255,0,0)',
-                    'rgb(0,255,0)',
-                    'rgb(0,0,255)',
-                    'rgb(255,128,0)',
-                    'rgb(127,0,255)',
-                    'rgb(255,0,127)',
-                    'rgb(0,255,255)',
-                    'rgb(255,255,0)',
-                    'rgb(0,204,102)'
-                ]
-            }]
-        },
-        options:{
-            responsive:true,
-            maintainAspectRatio:false,
-            plugins:{
-                title:{
-                    display:true,
-                    text:'Number of Albums added per Decade',
-                    font:{
-                        family:"'open-sans', sans-serif"
-                    },
-                    color:'black'
-                },
-                legend:{
-                    display:true,
-                    font:{
-                        family:"'open-sans', sans-serif"
-                    },
-                    color:'black'
-                }
-            }
-        },
-        plugins:[{
-            id: 'custom_canvas_background_color',
-            beforeDraw: (chart) => {
-                const ctx = chart.canvas.getContext('2d');
-                ctx.save();
-                ctx.globalCompositeOperation = 'destination-over';
-                ctx.fillStyle = 'rgb(191,191,191)';
-                ctx.fillRect(0, 0, chart.width, chart.height);
-                ctx.restore();
-            }
-        }  
-        ]
-            
-        
-    });
     return decades;
 }
 
+async function getMonthsDiscovery(year, callback) {
+    let items = await getEntireLibrary('albums', callback);
 
+    //console.log("items");
+    //console.log(items);
+    return items;
+}
+
+function getAlbumDiscovery(data) {
+    console.log("Albums: ");
+    
+    let albums = new Array();
+    for (let group of data) {
+        for (let item of group.items) {
+            //let date = new Date(item.added_at);
+            //console.log(date.getMonth());
+            albums.push(item);
+        }
+    }
+    
+    console.log(albums);
+    return albums;
+}
 
 function getArtistDiscovery(data) {
     //data should be all albums
@@ -266,12 +173,13 @@ function getArtistDiscovery(data) {
         let howmany = identicalArtists.length;
         artists.splice(index+1, howmany-1);
         artists.splice(index, 1, identicalArtists[0]);
-        
+
         console.log(identicalArtists);
     }
 
     //at this point, artists is now an array of the first album the user saved from a particular artist
     //each object contains the album, artist and date added
+    console.log("Artists: ");
     console.log(artists);
     return artists;
 }
@@ -291,8 +199,9 @@ function getDatesAdded (data) {
 
     //dates is an array of date objects
     //each date is the date an album was added
-    console.log(dates);
     
+    console.log(dates);
+
     return dates;
 }
 
@@ -310,63 +219,114 @@ function getReleaseDates (data) {
             //console.log(item.album.release_date);
         }
     }
+    console.log("Release Dates: ");
     console.log(dates);
     
     return dates;
 }
 
-function getAllGenres (data) {
-    //data is an array of all items
+async function getGenre(id) {
+    let endpoint = "https://api.spotify.com/v1/artists/" + id;
+    let artist = await callAPI("GET", endpoint, "");
 
+    let genre = artist.genres;
+
+    return genre;
+}
+
+async function getAllGenres (data) {
+    //data is an array of all albums
     let artists = getAllArtists(data);
-    //artists is an array of all artists (artist objects) the user listens to
 
-    let genres = new Array();
+    let allGenres = new Array();
 
-    let i = 0;
     for (let artist of artists) {
-        genres[i] = artist.genres;
-        i++;
+        let artistGenres = await getGenre(artist.id);
+        for (let genre of artistGenres) {
+            allGenres.push(genre);
+        }
+        //console.log(genre);
     }
 
+    allGenres.sort();
+
+    //get an array of all unique genres
+    let genres = allGenres.filter(function (genre) {
+        return genre;
+    });
+
+    let genreFreq = new Array();
+
+    for (let genre of genres) {
+        let key = genre;
+        let identicalGenres = genres.filter(function (genre) {
+            return key === genre;
+        });
+
+        let index = genres.indexOf(genre);
+        let howmany = identicalGenres.length;
+        genres.splice(index+1, howmany-1);
+
+        let obj = {
+            name: genre,
+            frequency: identicalGenres.length
+        }
+        genreFreq.push(obj);
+        //genres.push(identicalGenres[0]);
+
+        //console.log(identicalGenres);
+    }
+
+    
+    console.log(allGenres);
     console.log(genres);
+    genreFreq.sort(function (a, b) {
+        if (a.frequency < b.frequency) {
+            return 1;
+        }
+        else if (a.frequency > b.frequency) {
+            return -1;
+        }
+        else return 0;
+    })
+    console.log(genreFreq);
 }
 
 function getAllArtists (data) {
+
     let artists = new Array();
+
     for (let group of data) {
-        //console.log(group);
         for (let item of group.items) {
-            
-            //gets all artists, INCLUDES REPEATS
-            let current = item.album.artists[0];
-            let found = artists.includes(current.name);
-            if (!found) {
-                artists.push(current);
-                //html += `<p>${item.album.artists[0].name}</p>`;
-            }
-            
-            
+            //console.log(item.album.artists[0]);
+            artists.push(item.album.artists[0]);
         }
     }
 
-    /*
-    let endpoint = 'https://api.spotify.com/v1/artists';
-    while (offset < total) {
+    
+    //sort alphabetically
+    artists.sort(function (a, b) {
+        if (a.name > b.name) return 1
+        else 
+        if (a.name < b.name) return -1
+        else return 0;
+    });
+    
+    //handle duplicates
+    for (let artist of artists) {
+        let name = artist.name;
+        let identicalArtists = artists.filter(function (artist) {
+            return name === artist.name;
+        });
 
-        //first, get an array of the elements in artists between i and i+50
-        //consider using .map
-        
-        let query = `?ids=`;
-        let temp = await callAPI("GET", endpoint, query);
-        
-        //console.log(temp);
+        let index = artists.indexOf(artist);
+        let howmany = identicalArtists.length;
+        artists.splice(index+1, howmany-1);
+        artists.splice(index, 1, identicalArtists[0]);
 
-        offset += 50;
+        //console.log(identicalArtists);
     }
-    */
 
-    console.log(artists);
     return artists;
 }
 
@@ -413,11 +373,11 @@ async function getEntireLibrary (type, callback) {
         //console.log(items);
     }
     */
-   
+    
     console.log(items);
-    
+
     callback(items);
-    
+
     return items;
     //items is an array of all tracks/albums (grouped by 50 or less)
     //each index in items array contains 50 or less items
@@ -429,11 +389,20 @@ async function getNumItems(type) {
     let query =  `?limit=1`;
     let item = await callAPI("GET", endpoint, query);
     console.log(item);
-    
+
     return item.total;
 }
 
 access_token = localStorage.getItem("access_token");
+
+function refreshAccessToken () {
+    refresh_token = localStorage.getItem("refresh_token");
+    let body = "grant_type=refresh_token";
+    body += "&refresh_token=" + refresh_token;
+    body += "&client_id=" + client_id;
+    
+    callAuthApi(body);
+}
 
 async function callAPI(method, endpoint, query) {
     let response = await fetch (endpoint+query, {
@@ -446,12 +415,11 @@ async function callAPI(method, endpoint, query) {
         console.log("Fetch Error: " + error);
     })
     let data = await response.json();
-    console.log(`At Call API: ` + response.status);
-
+    console.log(`At CallAPI: ${endpoint}: ` + response.status);
     if (response.status === 401) {
         refreshAccessToken();
     }
-    
+
     return data;
 }
 
@@ -475,57 +443,21 @@ function fetchAccessToken(code) {
     body += "&redirect_uri=" + encodeURI(redirect_uri);
     body += "&client_id=" + client_id;
     body += "&client_secret=" + client_secret;
-
+    
     callAuthApi(body);
 }
 
 const token = "https://accounts.spotify.com/api/token";
 
 function callAuthApi(body) {
-
+    
     let xhr = new XMLHttpRequest();
     xhr.open("POST", token, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Authorization", "Basic " + btoa(client_id + ":" + client_secret));
     xhr.send(body);
     xhr.onload = handleAuthResponse;
-
-
-    /*
-    fetch (token, {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded', 
-            'Authorization': 'Basic ' + btoa(client_id + ":" + client_secret)
-        },
-        method: 'POST',
-        body: body
-        
-    })
-    .then (function (response) {
-        if (response.status === 200) {
-            var data = JSON.parse(response.responseText);
-            console.log(data);
-            var data = JSON.parse(response.responseText);
-            if (data.access_token != undefined) {
-                access_token = data.access_token;
-                localStorage.setItem("access_token", access_token);
-            }
-            if (data.refresh_token != undefined) {
-                refresh_token = data.refresh_token;
-                localStorage.setItem("refresh_token", refresh_token);
-            }
-            onPageLoad();
-        }
-        else if (response.status === 401) {
-            refreshAccessToken ();
-        }
-        else {
-            console.log(response.responseText);
-            alert(response.responseText);
-        }
-    })
-    */
-
+    
 }
 
 function handleAuthResponse() {
@@ -553,20 +485,11 @@ function handleAuthResponse() {
     }
 }
 
-function refreshAccessToken() {
-    refresh_token = localStorage.getItem("refresh_token");
-    let body = "grant_type=refresh_token";
-    body += "&refresh_token=" + refresh_token;
-    body += "&client_id=" + client_id;
-
-    callAuthApi(body);
-}
-
-function getCode() {
+function getCode () {
     let code = null;
     const qString = window.location.search;
     if (qString.length > 0) {
-        const urlParams = new URLSearchParams(qString);
+        const urlParams = new URLSearchParams (qString);
         code = urlParams.get('code');
     }
 
@@ -574,6 +497,29 @@ function getCode() {
     return code;
 }
 
+
+// HAMBURGER CODE
+console.log(window.navigator.cookieEnabled);
+console.log(window.navigator.online);
+console.log(navigator.appVersion);
+console.log(navigator.userAgent)
+console.log(navigator.platform);
+
+
+console.log(window.location.href);
+console.log(window.location.protocol);
+console.log(window.location.hostname);
+
+
+function redirect(url){
+  window.location.assign(url);
+}
+/*
+window.onload = function(event){
+   console.log("Page has loaded");
+
+}
+*/
 const sidebar = document.querySelector('.sidebar');
 const navLinks = document.querySelector('.nav-links');
 const Links = document.querySelector('.nav-links li');
