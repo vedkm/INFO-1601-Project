@@ -6,10 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="../css/option5.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Open+Sans&display=swap" rel="stylesheet">
   <title>SpotStats</title>
 </head>
 
-<body onload="initMusicDiscovery()">
+<body onload="">
   <nav class="topnav">
     <div class="sidebar">
       <div class="line"></div>
@@ -20,6 +22,11 @@
       <img class="small-logo" src="../images/small-logo.png" alt="Small logo">
     </div>
     <ul class="nav-links">
+        <li><a href="option1.html" class="sidebar-links">Top 10's</a></li>
+        <li><a href="option2.html" class="sidebar-links">Genre Pie Chart</a></li>
+        <li><a href="option3.html" class="sidebar-links">Top Decades</a></li>
+        <li><a href="option4.html" class="sidebar-links">Music Discovery</a></li>
+        <li><a href="option5.html" class="sidebar-links" id="hamburger-selected">Playlist Generator</a></li>
         <li><a href="menu.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="../index.html">Log Out</a></li>
@@ -35,29 +42,22 @@
                 <a href="option2.html">Genre Pie Chart</a>
                 <hr class="sidebar-line">
 
-                <a href="option3.html">Top 3 Decades</a>
+                <a href="option3.html">Top Decades</a>
                 <hr class="sidebar-line">
 
-                <a href="option4.html">Playlist Generator</a>
+                <a href="option4.html">Music Discovery</a>
                 <hr class="sidebar-line">
 
-                <a href="option5.html" id="selected">Music Discovery</a>
+                <a href="option5.html" id="selected">Playlist Generator</a>
             </ul>
         </div>
     </section>
  
-    <section id="right-section">
+    <section id="right-section"> 
     </section>
    </div>
 
 </body>
-<script>
-  function initMusicDiscovery() {
-    //let artists = getMonthsDiscovery(2021, getArtistDiscovery);
-    let artists = getEntireLibrary('albums', getArtistDiscovery);
-    let albums = getEntireLibrary('albums', getAlbumDiscovery);
-    //let albums = getMonthsDiscovery(2021, getAlbumDiscovery);
-  }
-</script>
+
 <script src="../js/menu.js"></script>
 </html>
