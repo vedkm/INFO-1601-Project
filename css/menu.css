@@ -70,6 +70,10 @@ h1{
   width: 325px;
 }
 
+img:hover{
+  width: 330px;
+}
+
 /****************************************************NAV BAR********************/
 .topnav{
   background: black;
