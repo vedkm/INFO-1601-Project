@@ -304,11 +304,12 @@ function getArtistDiscovery(data) {
         });
         for (i = 0; i < 12; i++) {
             //year.months[i].artists = new Array();
+            let artistsMonth = artistsYear.filter(function (artist) {
+                return artist.date_added.getMonth() === i;
+            });
             year.months[i] = {
-                freq: 10,
-                artists: artistsYear.filter(function (artist) {
-                    return artist.date_added.getMonth() === i;
-                })
+                freq: artistsMonth.length,
+                artists: artistsMonth
             };
         }
         
@@ -322,12 +323,12 @@ function getArtistDiscovery(data) {
     }
     
     console.log("Artists: ");
-    console.log(artists);
+    //console.log(artists);
 
     console.log(years);
 
     
-    return artists;
+    return years;
 }
 
 function getDatesAdded (data) {
