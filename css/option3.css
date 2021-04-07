@@ -172,6 +172,10 @@ body {
     display: none;
   }
 
+  .chart-container{
+    width:100vw;
+  }
+
   #right-section{
     flex-basis: 100%;
   }
@@ -246,6 +250,9 @@ body {
     transform: translate(-5%,-50%);
     z-index: 3;
   }
+
+
+  
 }
 
 .body {

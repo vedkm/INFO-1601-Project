@@ -117,7 +117,74 @@ function getDecades(data) {
 
     console.log("Decades: ");
     console.log(decades);
+    let decadeHead = new Array();
+    let frequency = new Array();
 
+    for(let group of decades){
+        let key=group;
+        let identicalDecades = decades.filter(function(group){
+            return key === group;
+        });
+
+        let index = decades.indexOf(group);
+        let howmany = identicalDecades.length;
+        decades.splice(index+1,howmany-1);
+        decadeHead.push(group);
+        frequency.push(identicalDecades.length);
+    }
+
+    console.log(decadeHead);
+    console.log(frequency);
+
+
+    let decadeChart=document.getElementById('decadeChart').getContext('2d');
+
+    let decChart= new Chart(decadeChart,{
+        type:'pie',
+        data:{
+            labels:decadeHead,
+            datasets:[{
+                label:'Decades',
+                data:frequency,
+                backgroundColor:[
+                    'rgb(255,0,0)',
+                    'rgb(0,255,0)',
+                    'rgb(0,0,255)',
+                    'rgb(255,128,0)',
+                    'rgb(127,0,255)',
+                    'rgb(255,0,127)',
+                    'rgb(0,255,255)',
+                    'rgb(255,255,0)',
+                    'rgb(0,204,102)'
+                ]
+            }]
+        },
+        options:{
+            responsive:true,
+            maintainAspectRatio:false,
+            plugins:{
+                title:{
+                    display:true,
+                    text:'Number of Albums added per Decade',
+                    font:{
+                        family:"'Open-Sans', sans-serif"
+                    },
+                    color:'white'
+                },
+                legend:{
+                    display:true,
+                    labels:{
+                        font:{
+                            family:"'Open-Sans', sans-serif"
+                        },
+                        color:'white'
+                    }
+                }
+            }
+        }
+            
+        
+    });
     return decades;
 }
 
@@ -273,7 +340,10 @@ async function getAllGenres (data) {
         return genre;
     });
 
+
     let genreFreq = new Array();
+    let genreHead = new Array(); 
+    let Freq = new Array();
 
     for (let genre of genres) {
         let key = genre;
@@ -284,6 +354,10 @@ async function getAllGenres (data) {
         let index = genres.indexOf(genre);
         let howmany = identicalGenres.length;
         genres.splice(index+1, howmany-1);
+
+        genreHead.push(genre);
+        Freq.push(identicalGenres.length);
+        
 
         let obj = {
             name: genre,
@@ -308,6 +382,60 @@ async function getAllGenres (data) {
         else return 0;
     })
     console.log(genreFreq);
+    console.log(genreHead);
+    console.log(Freq);
+    let genreChart=document.getElementById('genreChart').getContext('2d');
+
+    let genChart= new Chart(genreChart,{
+        type:'pie',
+        data:{
+            labels:genreHead,
+            datasets:[{
+                label:'Genre',
+                data:Freq,
+                backgroundColor:[
+                    'rgb(255,0,0)',
+                    'rgb(0,255,0)',
+                    'rgb(0,0,255)',
+                    'rgb(255,128,0)',
+                    'rgb(127,0,255)',
+                    'rgb(255,0,127)',
+                    'rgb(0,255,255)',
+                    'rgb(255,255,0)',
+                    'rgb(0,204,102)',
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ]
+            }]
+        },
+        options:{
+            responsive:true,
+            maintainAspectRatio:false,
+            plugins:{
+                title:{
+                    display:true,
+                    text:'Number of Albums added per Decade',
+                    font:{
+                        family:"'Open-Sans', sans-serif"
+                    },
+                    color:'white'
+                },
+                legend:{
+                    display:true,
+                    labels:{
+                        font:{
+                            family:"'Open-Sans', sans-serif"
+                        },
+                        color:'white'
+                    }
+                }
+            }
+        }
+        
+            
+        
+    });
 }
 
 function getAllArtists (data) {
