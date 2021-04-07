@@ -116,11 +116,18 @@ function getDecades(data) {
     let decadeHead = new Array();
     let frequency = new Array();
 
+    decades.sort(function (a, b) {
+        if (a > b) return 1
+        else if (a < b) return -1
+        else return 0;
+    });
+
     for(let group of decades){
         let key=group;
         let identicalDecades = decades.filter(function(group){
             return key === group;
         });
+        console.log(identicalDecades);
 
         let index = decades.indexOf(group);
         let howmany = identicalDecades.length;
