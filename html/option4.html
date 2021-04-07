@@ -59,10 +59,11 @@
 
 </body>
 <script>
-  function initMusicDiscovery() {
+  async function initMusicDiscovery() {
     document.querySelector("#logout").innerHTML = `Log Out (${window.localStorage.getItem("username")})`; 
-    let artists = getEntireLibrary('albums', getArtistDiscovery);
-    let albums = getEntireLibrary('albums', getAlbumDiscovery);
+    let artists = await getEntireLibrary('albums', getArtistDiscovery);
+    //console.log(artists);
+    let albums = await getEntireLibrary('albums', getAlbumDiscovery);
     //let artists = getMonthsDiscovery(2021, getArtistDiscovery);
     //let albums = getMonthsDiscovery(2021, getAlbumDiscovery);
   }

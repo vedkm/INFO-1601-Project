@@ -585,9 +585,9 @@ async function getEntireLibrary (type, callback) {
     
     console.log(items);
 
-    callback(items);
+    let processedItems = callback(items);
 
-    return items;
+    return processedItems;
     //items is an array of all tracks/albums (grouped by 50 or less)
     //each index in items array contains 50 or less items
     
