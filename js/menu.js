@@ -82,10 +82,6 @@ async function getTop(type, time_range, callback) {
 
 }
 
-function getArtistImage(id) {
-    
-}
-
 function getImages(data) {
     let images = {
         artists: new Array(),
@@ -189,10 +185,10 @@ function getDecades(data) {
 }
 
 async function getMonthsDiscovery(year, callback) {
-    let items = await getEntireLibrary('albums', callback);
+    let items = await getEntireLibrary('albums', getArtistDiscovery);
 
-    //console.log("items");
-    //console.log(items);
+    console.log(callback);
+    console.log(items);
     return items;
 }
 
@@ -222,8 +218,11 @@ function getArtistDiscovery(data) {
             let artist = {
                 name: item.album.artists[0].name,
                 album_name: item.album.name,
-                date_added: item.added_at
             };
+            let date = new Date(item.added_at);
+            //artist.month = date.getMonth();
+            artist.date_added = date;
+            //january has a value of zero
             artists.push(artist);
             //console.log(date);
         }
@@ -259,13 +258,68 @@ function getArtistDiscovery(data) {
         artists.splice(index+1, howmany-1);
         artists.splice(index, 1, identicalArtists[0]);
 
-        console.log(identicalArtists);
+        //console.log(identicalArtists);
     }
 
     //at this point, artists is now an array of the first album the user saved from a particular artist
     //each object contains the album, artist and date added
+    /*
+    artists.sort(function (a, b) {
+        if (a.date_added > b.date_added) return 1;
+        else if (a.date_added < b.date_added) return -1;
+        else return 0;
+    });*/
+
+    //now create an array of year objects, each year object has an array of month objects,
+    //each month object has a frequency of artists in that month, and an array of artist objects discovered
+    
+    artists.sort(function (a, b) {
+        if (a.date_added > b.date_added) return 1;
+        else if (a.date_added < b.date_added) return -1;
+        else return 0;
+    });
+
+    let artistsCopy = [...artists];
+    console.log(artistsCopy);
+    
+    var years = new Array();
+    let start = 0;
+    for (artist of artists) {
+        //let date = artist.date_added;
+        //let x = date.getFullYear();
+        //console.log(artist.date_added.getFullYear());
+        let year = {
+            year: artist.date_added.getFullYear(),
+            months: new Array(12)
+        }
+        let artistsYear = artists.filter(function (artist) {
+            return artist.date_added.getFullYear() === year.year;
+        });
+        for (i = 0; i < 12; i++) {
+            //year.months[i].artists = new Array();
+            year.months[i] = {
+                freq: 10,
+                artists: artistsYear.filter(function (artist) {
+                    return artist.date_added.getMonth() === i;
+                })
+            };
+        }
+        
+        //console.log(artists.indexOf(artist));
+        //console.log(artistsYear.length);
+        console.log(year);
+        artists.splice(artists.indexOf(artist), artistsYear.length);
+        years.push(year);
+
+        //artistsCopy.splice(artistsCopy.indexOf(artist), years.length);
+    }
+    
     console.log("Artists: ");
     console.log(artists);
+
+    console.log(years);
+
+    
     return artists;
 }
 
