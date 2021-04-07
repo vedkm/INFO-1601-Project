@@ -127,7 +127,7 @@ function getDecades(data) {
         let identicalDecades = decades.filter(function(group){
             return key === group;
         });
-        console.log(identicalDecades);
+        //console.log(identicalDecades);
 
         let index = decades.indexOf(group);
         let howmany = identicalDecades.length;
