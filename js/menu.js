@@ -168,7 +168,7 @@ function getDecades(data) {
             plugins:{
                 title:{
                     display:true,
-                    text:'Number of Albums added per Decade',
+                    text:'Albums Added per Decade',
                     font:{
                         family:"'Open-Sans', sans-serif"
                     },
@@ -315,7 +315,7 @@ function getArtistDiscovery(data) {
         //console.log(artists.indexOf(artist));
         //console.log(artistsYear.length);
         console.log(year);
-        artists.splice(artists.indexOf(artist), artistsYear.length);
+        artists.splice(artists.indexOf(artist), artistsYear.length-1);
         years.push(year);
 
         //artistsCopy.splice(artistsCopy.indexOf(artist), years.length);
@@ -445,6 +445,7 @@ async function getAllGenres (data) {
     console.log(genreFreq);
     console.log(genreHead);
     console.log(Freq);
+
     let genreChart=document.getElementById('genreChart').getContext('2d');
 
     let genChart= new Chart(genreChart,{
@@ -476,14 +477,14 @@ async function getAllGenres (data) {
             plugins:{
                 title:{
                     display:true,
-                    text:'Number of Albums added per Decade',
+                    text:'Genres',
                     font:{
                         family:"'Open-Sans', sans-serif"
                     },
                     color:'white'
                 },
                 legend:{
-                    display:true,
+                    display:false,
                     labels:{
                         font:{
                             family:"'Open-Sans', sans-serif"
