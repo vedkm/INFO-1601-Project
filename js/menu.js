@@ -36,24 +36,24 @@ function renderList(data, type) {
         //first
         let pos = document.querySelector("#first > p");
         let img = document.querySelector("#first > img");
-        pos.innerHTML = data.items[0].album.name;
+        pos.innerHTML = data.items[0].name;
         img.src = data.items[0].album.images[0].url;
         //second
         pos = document.querySelector("#second > p");
         img = document.querySelector("#second > img");
-        pos.innerHTML = data.items[1].album.name;
+        pos.innerHTML = data.items[1].name;
         img.src = data.items[1].album.images[0].url;
         //third
         pos = document.querySelector("#third > p");
         img = document.querySelector("#third > img");
-        pos.innerHTML = data.items[2].album.name;
+        pos.innerHTML = data.items[2].name;
         img.src = data.items[2].album.images[0].url;
 
         let list = document.querySelector("#rest-of-list");
         list.innerHTML = "";
         for (i = 3; i < data.items.length; i++) {
             //console.log(data.items[i].name);
-            list.innerHTML += `<li>${data.items[i].album.name}</li>`
+            list.innerHTML += `<li>${data.items[i].name}</li>`
         }
     }
 }
