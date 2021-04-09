@@ -4,7 +4,8 @@
   "description": "Spotify statistics",
   "main": "index.html",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "start"
   },
   "repository": {
     "type": "git",
