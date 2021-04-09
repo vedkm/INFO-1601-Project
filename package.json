@@ -1,20 +1,10 @@
 {
-<<<<<<< HEAD
   "name": "info-1601-project",
   "version": "1.0.0",
   "description": "spotstats",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
-=======
-  "name": "spotstats",
-  "version": "1.0.0",
-  "description": "Spotify statistics",
-  "main": "index.html",
-  "scripts": {
-    "test": "test",
-    "start": "start"
->>>>>>> c82781541cb18bf81af7a08609d04551222b9893
   },
   "repository": {
     "type": "git",
