@@ -1,1 +1,19 @@
-
+{
+  "name": "spotstats",
+  "version": "1.0.0",
+  "description": "Spotify statistics",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vedkm/INFO-1601-Project.git"
+  },
+  "author": "Ved Mahadeo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vedkm/INFO-1601-Project/issues"
+  },
+  "homepage": "https://github.com/vedkm/INFO-1601-Project#readme"
+}
