@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.js" integrity="sha512-n8DscwKN6+Yjr7rI6mL+m9nS4uCEgIrKRFcP0EOkIvzOLUyQgOjWK15hRfoCJQZe0s6XrARyXjpvGFo1w9N3xg==" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   <link href="../css/option4.css" rel="stylesheet" type="text/css" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Open+Sans&display=swap" rel="stylesheet">
@@ -54,6 +57,9 @@
     </section>
  
     <section id="right-section">
+      <div class="chart-container" >
+        <canvas id="discoveryChart" ></canvas>
+      </div>
     </section>
    </div>
 
@@ -62,7 +68,49 @@
   async function initMusicDiscovery() {
     document.querySelector("#logout").innerHTML = `Log Out (${window.localStorage.getItem("username")})`; 
     let artists = await getEntireLibrary('albums', getArtistDiscovery);
-    //console.log(artists);
+    console.log("here");
+    console.log(artists);
+    let discoveryChart=document.getElementById('discoveryChart').getContext('2d');
+
+    let disChart= new Chart(discoveryChart,{
+        type:'line',
+        data:{
+            labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'My First Dataset',
+                data: artists,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+              }]
+        },
+        options:{
+            responsive:true,
+            maintainAspectRatio:false,
+            plugins:{
+                title:{
+                    display:true,
+                    text:'Genres',
+                    font:{
+                        family:"'Open-Sans', sans-serif"
+                    },
+                    color:'white'
+                },
+                legend:{
+                    display:false,
+                    labels:{
+                        font:{
+                            family:"'Open-Sans', sans-serif"
+                        },
+                        color:'white'
+                    }
+                }
+            }
+        }
+        
+            
+        
+    });
     let albums = await getEntireLibrary('albums', getAlbumDiscovery);
     //let artists = getMonthsDiscovery(2021, getArtistDiscovery);
     //let albums = getMonthsDiscovery(2021, getAlbumDiscovery);
