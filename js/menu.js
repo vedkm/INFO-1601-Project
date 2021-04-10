@@ -431,15 +431,9 @@ async function getAllGenres (data) {
         let howmany = identicalGenres.length;
         genres.splice(index+1, howmany-1);
 
-        genreHead.push(genre);
-        Freq.push(identicalGenres.length);
+        //genreHead.push(genre);
+        //Freq.push(identicalGenres.length);
         
-
-        let obj = {
-            name: genre,
-            frequency: identicalGenres.length
-        }
-        genreFreq.push(obj);
         //genres.push(identicalGenres[0]);
 
         //console.log(identicalGenres);
@@ -448,15 +442,48 @@ async function getAllGenres (data) {
     
     console.log(allGenres);
     console.log(genres);
-    genreFreq.sort(function (a, b) {
-        if (a.frequency < b.frequency) {
-            return 1;
-        }
-        else if (a.frequency > b.frequency) {
-            return -1;
-        }
-        else return 0;
-    })
+
+    //array of generic genres
+    const genreList = [
+        "pop",
+        "jazz",
+        "country",
+        "rock",
+        "folk",
+        "rap",
+        "hip hop",
+        "reggae",
+        "dancehall",
+        "brazilian",
+        "indie",
+        "ambient",
+        "r&b", 
+        "dance",
+        "soul",
+        "world",
+        "blues",
+        "funk",
+        "edm",
+    ];
+
+    //code to get array of simple genres in library
+    let simpleGenres = new Array();
+    let other = new Array();
+
+    for (let genre of genreList) {
+        let temp = genres.filter(function (a) {
+            //return a.includes(genre)
+            if (a.includes(genre)) {
+                return true
+            }
+        })
+        Freq.push(temp.length);
+        genreHead.push(genre);
+        simpleGenres.push(temp);
+
+    }
+    console.log(simpleGenres);
+
     console.log(genreFreq);
     console.log(genreHead);
     console.log(Freq);
