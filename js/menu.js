@@ -139,6 +139,20 @@ function getDecades(data) {
     console.log(decadeHead);
     console.log(frequency);
 
+    //sort decadeHead
+    decadeHead.sort(function (a, b) {
+        let start = decadeHead.indexOf(a);
+        let end = decadeHead.indexOf(b);
+        if (frequency[start] > frequency[end]) return 1
+        else if (frequency[start] < frequency[end]) return -1
+        else return 0
+    });
+    //sort frequency
+    frequency.sort(function (a, b) {
+        if (a > b) return 1
+        else if (a < b) return -1
+        else return 0
+    })
 
     let decadeChart=document.getElementById('decadeChart').getContext('2d');
 
@@ -446,6 +460,21 @@ async function getAllGenres (data) {
     console.log(genreFreq);
     console.log(genreHead);
     console.log(Freq);
+
+    //sort genreHead
+    genreHead.sort(function (a, b) {
+        let start = genreHead.indexOf(a);
+        let end = genreHead.indexOf(b);
+        if (Freq[start] > Freq[end]) return -1
+        else if (Freq[start] < Freq[end]) return 1
+        else return 0
+    });
+    //sort frequency
+    Freq.sort(function (a, b) {
+        if (a > b) return -1
+        else if (a < b) return 1
+        else return 0
+    })
 
     let genreChart=document.getElementById('genreChart').getContext('2d');
 
