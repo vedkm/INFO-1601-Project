@@ -304,6 +304,7 @@ function getArtistDiscovery(data) {
     console.log(artistsCopy);
     
     var years = new Array();
+    let freq= new Array();
     let start = 0;
     for (artist of artists) {
         //let date = artist.date_added;
@@ -311,7 +312,7 @@ function getArtistDiscovery(data) {
         //console.log(artist.date_added.getFullYear());
         let year = {
             year: artist.date_added.getFullYear(),
-            months: new Array(12)
+            months: new Array()
         }
         let artistsYear = artists.filter(function (artist) {
             return artist.date_added.getFullYear() === year.year;
@@ -321,10 +322,8 @@ function getArtistDiscovery(data) {
             let artistsMonth = artistsYear.filter(function (artist) {
                 return artist.date_added.getMonth() === i;
             });
-            year.months[i] = {
-                freq: artistsMonth.length,
-                artists: artistsMonth
-            };
+            year.months.push(artistsMonth.length);
+            freq.push(artistsMonth.length);
         }
         
         //console.log(artists.indexOf(artist));
@@ -340,9 +339,10 @@ function getArtistDiscovery(data) {
     //console.log(artists);
 
     console.log(years);
-
+    console.log(freq);
     
-    return years;
+    
+    return freq;
 }
 
 function getDatesAdded (data) {
