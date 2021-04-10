@@ -74,6 +74,16 @@ body{
     height: 100vh;
 }
 
+.chart-container{
+  align-items: center;
+  display:flex;
+  flex-direction:row;
+  padding-top: 150px;
+  position:relative;
+  height:80vh;
+  width:80vw;
+}
+
 /* The sidebar menu */
 .sidebar-links{
   display: none;
@@ -158,6 +168,10 @@ body {
 @media screen and (max-width: 1020px) {
   #left-section{
     display: none;
+  }
+
+  .chart-container{
+    width:100vw;
   }
 
   #right-section{
