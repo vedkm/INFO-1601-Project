@@ -36,10 +36,13 @@ async function createPlaylist(data) {
         "uris": uris
     }
 
-    playlist = await callAPI("POST", endpoint, "", body);
+    let snapshot = await callAPI("POST", endpoint, "", body);
 
     console.log(playlist);
+    console.log(snapshot);
 
+    let istream = document.querySelector("#playlist-embed");
+    istream.innerHTML = `<iframe src='https://open.spotify.com/embed/playlist/${playlist.id}' id="playlist" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
     
 
 }

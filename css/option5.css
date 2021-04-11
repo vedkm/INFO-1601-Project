@@ -146,6 +146,20 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: inherit;
+}
+
+#playlist-embed {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#playlist{
+  width: 90%;
+  height: 75vh;
 }
 
 #right-section-body input{
