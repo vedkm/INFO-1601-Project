@@ -23,12 +23,14 @@ async function createPlaylist(data) {
 
     //insert items
     console.log(playlist.id);
+    console.log(data);
     endpoint = `https://api.spotify.com/v1/playlists/${playlist.id}/tracks`;
     query = "";
 
     let uris = new Array();
-    for (let song of data) {
+    for (let song of data.items) {
         uris.push(song.uri);
+        //console.log(song.uri);
     }
 
     body = {
