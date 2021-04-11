@@ -224,7 +224,8 @@ function getDecades(data) {
                     display:true,
                     text:'Albums Added per Decade',
                     font:{
-                        family:"'Open-Sans', sans-serif"
+                        family:"'Open-Sans', sans-serif",
+                        size:20
                     },
                     color:'white'
                 },
@@ -232,7 +233,8 @@ function getDecades(data) {
                     display:true,
                     labels:{
                         font:{
-                            family:"'Open-Sans', sans-serif"
+                            family:"'Open-Sans', sans-serif",
+                            size:15
                         },
                         color:'white'
                     }
