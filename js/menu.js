@@ -204,15 +204,21 @@ function getDecades(data) {
                 label:'Decades',
                 data:frequency,
                 backgroundColor:[
-                    'rgb(255,0,0)',
-                    'rgb(0,255,0)',
-                    'rgb(0,0,255)',
-                    'rgb(255,128,0)',
-                    'rgb(127,0,255)',
-                    'rgb(255,0,127)',
-                    'rgb(0,255,255)',
-                    'rgb(255,255,0)',
-                    'rgb(0,204,102)'
+                    "#FF0000",
+                    "#800000",
+                    "#FFFF00",
+                    "#808000",
+                    "#00FF00",
+                    "#008000",
+                    "#00FFFF",
+                    "#008080",
+                    "#0000FF",
+                    "#000080",
+                    "#FF00FF",
+                    "#800080",
+                    "#000000",
+                    "#808080",
+                    "#C0C0C0"
                 ]
             }]
         },
@@ -236,7 +242,8 @@ function getDecades(data) {
                             family:"'Open-Sans', sans-serif",
                             size:15
                         },
-                        color:'white'
+                        color:'white',
+                        boxWidth: 15
                     }
                 }
             }
@@ -565,9 +572,12 @@ async function getAllGenres (data) {
             }
             return false;
         })
-        Freq.push(temp.length);
-        genreHead.push(genre);
-        simpleGenres.push(temp);
+        //to prevent empty genres
+        if (temp.length > 0) {
+            Freq.push(temp.length);
+            genreHead.push(genre);
+            simpleGenres.push(temp);
+        }
 
     }
 
@@ -607,18 +617,27 @@ async function getAllGenres (data) {
                 label:'Genre',
                 data:Freq,
                 backgroundColor:[
-                    'rgb(255,0,0)',
-                    'rgb(0,255,0)',
-                    'rgb(0,0,255)',
-                    'rgb(255,128,0)',
-                    'rgb(127,0,255)',
-                    'rgb(255,0,127)',
-                    'rgb(0,255,255)',
-                    'rgb(255,255,0)',
-                    'rgb(0,204,102)',
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)'
+                    '#e6194b',
+                    '#3cb44b',
+                    '#ffe119', 
+                    '#4363d8', 
+                    '#f58231', 
+                    '#911eb4', 
+                    '#46f0f0', 
+                    '#f032e6', 
+                    '#bcf60c', 
+                    '#fabebe', 
+                    '#008080', 
+                    '#e6beff', 
+                    '#9a6324', 
+                    '#fffac8', 
+                    '#800000', 
+                    '#aaffc3', 
+                    '#808000', 
+                    '#ffd8b1', 
+                    '#000075', 
+                    '#808080', 
+                    '#000000'
                 ]
             }]
         },
