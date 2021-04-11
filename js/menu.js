@@ -630,7 +630,8 @@ async function getAllGenres (data) {
                     display:true,
                     text:'Genres',
                     font:{
-                        family:"'Open-Sans', sans-serif"
+                        family:"'Open-Sans', sans-serif",
+                        size:20
                     },
                     color:'white'
                 },
@@ -638,7 +639,8 @@ async function getAllGenres (data) {
                     display:false,
                     labels:{
                         font:{
-                            family:"'Open-Sans', sans-serif"
+                            family:"'Open-Sans', sans-serif",
+                            size:15
                         },
                         color:'white'
                     }
