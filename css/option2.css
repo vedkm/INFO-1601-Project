@@ -74,19 +74,27 @@ body{
     height: 100vh;
 }
 
-.chart-container{
-  /*
-  align-items: center;
-  display:flex;
-  flex-direction:row;*/
+.name{
+  color: white;
+  background: #20843E;
+  display: block;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  z-index: 1;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
 
+
+.chart-container{
   margin-left: auto;
   margin-right: auto;
-
-  padding-top: 150px;
-  position:relative;
-  height:90%; 
-  width: 90%;
+  margin-top: 20px;
+  height: 75%; 
+  width:  80%;
 }
 
 /* The sidebar menu */
@@ -142,6 +150,11 @@ body{
   height:100%;
 }
 
+#right-section-body{
+  margin-top: 50px;
+}
+
+
 #selected{
     background-color: #3AC563;
     color: white;
@@ -184,7 +197,7 @@ body {
   }
 
   .chart-container{
-    width:100vw;
+    width: 100%;
   }
 
   .nav-links{
