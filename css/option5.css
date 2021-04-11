@@ -112,6 +112,8 @@ body{
   color: #3AC563 ;
 }
 
+/* END OF SIDEBAR */
+
 #left-section{
   flex-basis: 20%;
   background-color: #0B6326;
@@ -138,7 +140,34 @@ body{
     color: black;
 }
 
-/* END OF SIDEBAR */
+
+#right-section-body{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#right-section-body input{
+  margin-top: 20px;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 2em;
+  color: white;
+  background-color: black;
+  height: 50px;
+  width: fit-content;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 50px;
+  transition-duration: 0.4s;
+}
+
+
+#right-section-body input:hover{
+  background-color: #3AC563; /* Green */
+  color: white;
+}
+
 
 *,
 *::before,
