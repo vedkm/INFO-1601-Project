@@ -11,7 +11,7 @@
   <title>SpotStats</title>
 </head>
 
-<body onload="onPageLoad()">
+<body onload="getTop('tracks', 'long_term', 50, createPlaylist);">
   <nav class="topnav">
     <div class="sidebar">
       <div class="line"></div>
@@ -60,6 +60,9 @@
 </body>
 <script>
   document.querySelector("#logout").innerHTML = `Log Out (${window.localStorage.getItem("username")})`; 
+
+  
+
 </script>
 <script src="../js/menu.js"></script>
 </html>

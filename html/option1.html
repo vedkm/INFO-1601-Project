@@ -131,7 +131,7 @@
     //console.log(value);
 
     //initialize page to artists
-    getTop(type, rangeVal[value], renderList);
+    getTop(type, rangeVal[value], 10, renderList);
 
 
     slider.oninput = function () {
@@ -139,20 +139,20 @@
       value = this.value - 1;
       console.log(rangeVal[value]);
 
-      getTop(type, rangeVal[value], renderList);
+      getTop(type, rangeVal[value], 10, renderList);
     }
 
 
     let songs = document.querySelector("#songsbutton");
     songs.addEventListener("click", function () {
       type = 'tracks';
-      getTop(type, rangeVal[value], renderList);
+      getTop(type, rangeVal[value], 10, renderList);
     });
 
     let artists = document.querySelector("#artistsbutton");
     artists.addEventListener("click", function () {
       type = 'artists';
-      getTop(type, rangeVal[value], renderList);
+      getTop(type, rangeVal[value], 10, renderList);
     });
 
     /*--------POTENTIAL FUNCTIONALITY TO CLICK IMAGE AND OPEN ARTIST/SONG PAGE ON SPOTIFY

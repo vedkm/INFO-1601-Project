@@ -6,6 +6,41 @@ function onPageLoad () {
 }
 
 
+async function createPlaylist(data) {
+    //make create playlist request first
+    let userid = window.localStorage.getItem("userid");
+    let username = window.localStorage.getItem("username");
+    let endpoint = `https://api.spotify.com/v1/users/${userid}/playlists`;
+    let query = "";
+    let body = {
+        "name": `${username}`,
+        "public": 'true',
+        "description": `A playlist of ${username}'s top 50 songs of all time.`
+    };
+    let playlist = await callAPI("POST", endpoint, "", body);
+
+    console.log(playlist);
+
+    //insert items
+    console.log(playlist.id);
+    endpoint = `https://api.spotify.com/v1/playlists/${playlist.id}/tracks`;
+    query = "";
+
+    let uris = new Array();
+    for (let song of data) {
+        uris.push(song.uri);
+    }
+
+    body = {
+        "uris": uris
+    }
+
+    playlist = await callAPI("POST", endpoint, "", body);
+
+    console.log(playlist);
+
+}
+
 function renderList(data, type) {
 
     if (type === "artists") {
@@ -59,8 +94,7 @@ function renderList(data, type) {
 }
 
 
-async function getTop(type, time_range, callback) {
-    var limit = 10;
+async function getTop(type, time_range, limit, callback) {
     let topItems;
 
    
@@ -721,11 +755,13 @@ function refreshAccessToken () {
     callAuthApi(body);
 }
 
-async function callAPI(method, endpoint, query) {
+async function callAPI(method, endpoint, query, body) {
     let response = await fetch (endpoint+query, {
         headers: {
-            'Authorization': 'Bearer ' + access_token
+            'Authorization': 'Bearer ' + access_token,
+            'Content-Type': 'application/json'
         },
+        body: JSON.stringify(body),
         method: method
     })
     .catch (function (error) {
@@ -812,6 +848,7 @@ async function getUsername() {
 
     console.log(profile);
     window.localStorage.setItem("username", profile.display_name);
+    window.localStorage.setItem("userid", profile.id);
 
     //let logout = document.querySelector("#logout");
     //logout.innerHTML += ` (${profile.display_name})`; 
