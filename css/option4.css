@@ -150,6 +150,26 @@ body{
 
 /* END OF SIDEBAR */
 
+.buttonclass{
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 35px;
+  color: white;
+  background-color: black;
+  height: 50px;
+  width: 180px;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition-duration: 0.4s;
+}
+
+.buttonclass:hover{
+  background-color: #3AC563; /* Green */
+  color: white;
+}
+
 *,
 *::before,
 *::after {
