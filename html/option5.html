@@ -11,7 +11,7 @@
   <title>SpotStats</title>
 </head>
 
-<body onload="getTop('tracks', 'long_term', 50, createPlaylist);">
+<body>
   <nav class="topnav">
     <div class="sidebar">
       <div class="line"></div>
@@ -55,7 +55,10 @@
  
     <section id="right-section">
       <div id="right-section-body">
-        <input type="button" value="Create A Top Songs Playlist" id="make-playlist">
+        <input  type="button" 
+                value="Create A Top Songs Playlist" 
+                id="make-playlist"
+                onclick="getTop('tracks', 'long_term', 50, createPlaylist)">
         <div id="playlist-embed"></div>
       </div>
       
