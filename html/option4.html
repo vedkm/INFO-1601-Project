@@ -2,119 +2,180 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.js" integrity="sha512-n8DscwKN6+Yjr7rI6mL+m9nS4uCEgIrKRFcP0EOkIvzOLUyQgOjWK15hRfoCJQZe0s6XrARyXjpvGFo1w9N3xg==" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-  <link href="../css/option4.css" rel="stylesheet" type="text/css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Open+Sans&display=swap" rel="stylesheet">
-  <title>SpotStats</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.js"
+		integrity="sha512-n8DscwKN6+Yjr7rI6mL+m9nS4uCEgIrKRFcP0EOkIvzOLUyQgOjWK15hRfoCJQZe0s6XrARyXjpvGFo1w9N3xg=="
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+	<link href="../css/option4.css" rel="stylesheet" type="text/css" />
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Open+Sans&display=swap" rel="stylesheet">
+	<title>SpotStats</title>
 </head>
 
 <body onload="initMusicDiscovery()">
-  <nav class="topnav">
-    <div class="sidebar">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-    </div>
-    <div class="slogo">
-      <img class="small-logo" src="../images/small-logo.png" alt="Small logo">
-    </div>
-    <ul class="nav-links">
-        <li><a href="option1.html" class="sidebar-links">Top 10's</a></li>
-        <li><a href="option2.html" class="sidebar-links">Genre Pie Chart</a></li>
-        <li><a href="option3.html" class="sidebar-links">Top Decades</a></li>
-        <li><a href="option4.html" class="sidebar-links" id="hamburger-selected">Music Discovery</a></li>
-        <li><a href="option5.html" class="sidebar-links">Playlist Generator</a></li>
-        <li><a href="menu.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a id="logout" href="../index.html">Log Out</a></li>
-    </ul>
-  </nav>
+	<nav class="topnav">
+		<div class="sidebar">
+			<div class="line"></div>
+			<div class="line"></div>
+			<div class="line"></div>
+		</div>
+		<div class="slogo">
+			<img class="small-logo" src="../images/small-logo.png" alt="Small logo">
+		</div>
+		<ul class="nav-links">
+			<li><a href="option1.html" class="sidebar-links">Top 10's</a></li>
+			<li><a href="option2.html" class="sidebar-links">Genre Pie Chart</a></li>
+			<li><a href="option3.html" class="sidebar-links">Top Decades</a></li>
+			<li><a href="option4.html" class="sidebar-links" id="hamburger-selected">Music Discovery</a></li>
+			<li><a href="option5.html" class="sidebar-links">Playlist Generator</a></li>
+			<li><a href="menu.html">Home</a></li>
+			<li><a href="about.html">About</a></li>
+			<li><a id="logout" href="../index.html">Log Out</a></li>
+		</ul>
+	</nav>
 
-  <div class="container">
-    <section id="left-section">
-        <div class="sidebar-body">
-                <a href="option1.html">Top 10's</a>
-                <hr class="sidebar-line">
+	<div class="container">
+		<section id="left-section">
+			<div class="sidebar-body">
+				<a href="option1.html">Top 10's</a>
+				<hr class="sidebar-line">
 
-                <a href="option2.html">Genre Pie Chart</a>
-                <hr class="sidebar-line">
+				<a href="option2.html">Genre Pie Chart</a>
+				<hr class="sidebar-line">
 
-                <a href="option3.html">Top Decades</a>
-                <hr class="sidebar-line">
+				<a href="option3.html">Top Decades</a>
+				<hr class="sidebar-line">
 
-                <a href="option4.html"  id="selected">Music Discovery</a>
-                <hr class="sidebar-line">
+				<a href="option4.html" id="selected">Music Discovery</a>
+				<hr class="sidebar-line">
 
-                <a href="option5.html">Playlist Generator</a>
-            </ul>
-        </div>
-    </section>
- 
-    <section id="right-section">
-      <div class="chart-container" >
-        <canvas id="discoveryChart" ></canvas>
-      </div>
-    </section>
-   </div>
+				<a href="option5.html">Playlist Generator</a>
+				</ul>
+			</div>
+		</section>
+
+		<section id="right-section">
+			<div class="chart-container">
+				<!--<canvas id="discoveryChart"></canvas>-->
+				
+			</div>
+			<span>
+				<input type="button" value="Artists" id="artist-button">
+				<input type="button" value="Albums" id="album-button">
+			</span>
+		</section>
+	</div>
 
 </body>
 <script>
-  async function initMusicDiscovery() {
-    document.querySelector("#logout").innerHTML = `Log Out (${window.localStorage.getItem("username")})`; 
-    let artists = await getEntireLibrary('albums', getArtistDiscovery);
-    console.log("here");
-    console.log(artists);
-    let discoveryChart=document.getElementById('discoveryChart').getContext('2d');
+	async function initMusicDiscovery() {
 
-    let disChart= new Chart(discoveryChart,{
-        type:'line',
-        data:{
-            labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            datasets: [{
-                label: 'My First Dataset',
-                data: artists,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-              }]
-        },
-        options:{
-            responsive:true,
-            maintainAspectRatio:false,
-            plugins:{
-                title:{
-                    display:true,
-                    text:'Genres',
-                    font:{
-                        family:"'Open-Sans', sans-serif"
-                    },
-                    color:'white'
-                },
-                legend:{
-                    display:false,
-                    labels:{
-                        font:{
-                            family:"'Open-Sans', sans-serif"
-                        },
-                        color:'white'
-                    }
-                }
-            }
-        }
-        
-            
-        
-    });
-    let albums = await getEntireLibrary('albums', getAlbumDiscovery);
-    //let artists = getMonthsDiscovery(2021, getArtistDiscovery);
-    //let albums = getMonthsDiscovery(2021, getAlbumDiscovery);
-  }
+		//logout personalization
+		document.querySelector("#logout").innerHTML = `Log Out (${window.localStorage.getItem("username")})`;
+
+		//get arrays
+		let artistYears = await getEntireLibrary('albums', getArtistDiscovery);
+		let albumYears = await getEntireLibrary('albums', getAlbumDiscovery);
+		console.log("here");
+		console.log("artists: ");
+		console.log(artistYears);
+		console.log("albums: ");
+		console.log(albumYears);
+		
+		
+		
+		
+		//let discoveryChart = document.getElementById('discoveryChart').getContext('2d');
+		
+		//style="background-color: #637aff" in html
+		let colorArray = [
+			"#ffffff",
+			"#ff6f63",
+			"#ffb963",
+			"#ff7563",
+			"#ff63f7",
+			"#a163ff",
+			"#637aff"
+		];
+
+		var type = "Artist"	//default
+		renderChart(artistYears);
+
+		function renderChart (years) {
+
+			document.querySelector(".chart-container").innerHTML = `<canvas id="discoveryChart"></canvas>`;  
+			let discoveryChart = document.getElementById('discoveryChart').getContext('2d');
+
+			let data = new Array();
+			let i = 0;
+			for (let year of years) {
+				let obj = {
+					label: year.year,
+					data: year.months,
+					fill: false,
+					borderColor: colorArray[i],
+					tension: 0.4	//was originally 0.1
+				}
+				data.push(obj);
+				i++;
+			}
+
+			let disChart = new Chart(discoveryChart, {
+				type: 'line',
+				data: {
+					labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+					datasets: data
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						title: {
+							display: true,
+							text: `${type} Discovery Over Time`,
+							font: {
+								family: "'Open-Sans', sans-serif"
+							},
+							color: 'white'
+						},
+						legend: {
+							display: true,
+							labels: {
+								font: {
+									family: "'Open-Sans', sans-serif"
+								},
+								color: 'white'
+							}
+						}
+					}
+				}
+			});
+		}
+
+
+		//handle buttons
+		let artistButton = document.querySelector("#artist-button");
+		let albumButton = document.querySelector("#album-button");
+		
+		artistButton.addEventListener("click", function () {
+			type = "Artist";
+			renderChart(artistYears);
+		});
+		albumButton.addEventListener("click", function () {
+			type = "Album";
+			renderChart(albumYears);
+		});
+		
+	}
 </script>
 <script src="../js/menu.js"></script>
+
 </html>

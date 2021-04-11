@@ -221,12 +221,60 @@ function getAlbumDiscovery(data) {
         for (let item of group.items) {
             //let date = new Date(item.added_at);
             //console.log(date.getMonth());
-            albums.push(item);
+            let album = {
+                name: item.album.name
+            };
+            let date = new Date(item.added_at);
+            album.date_added = date;
+            albums.push(album);
         }
     }
     
-    console.log(albums);
-    return albums;
+
+    albums.sort(function (a, b) {
+        if (a.date_added > b.date_added) return 1;
+        else if (a.date_added < b.date_added) return -1;
+        else return 0;
+    });
+
+    let albumsCopy = [...albums];
+    console.log(albumsCopy);
+    
+    var years = new Array();
+    let freq= new Array();
+    let start = 0;
+    for (album of albums) {
+        //let date = artist.date_added;
+        //let x = date.getFullYear();
+        //console.log(artist.date_added.getFullYear());
+        let year = {
+            year: album.date_added.getFullYear(),
+            months: new Array()
+        }
+        let albumYear = albums.filter(function (album) {
+            return album.date_added.getFullYear() === year.year;
+        });
+        for (i = 0; i < 12; i++) {
+            //year.months[i].artists = new Array();
+            let albumMonth = albumYear.filter(function (album) {
+                return album.date_added.getMonth() === i;
+            });
+            year.months.push(albumMonth.length);
+            freq.push(albumMonth.length);
+        }
+        
+        //console.log(artists.indexOf(artist));
+        //console.log(artistsYear.length);
+        console.log(year);
+        albums.splice(albums.indexOf(album), albumYear.length-1);
+        years.push(year);
+
+        //artistsCopy.splice(artistsCopy.indexOf(artist), years.length);
+    }
+
+
+    //console.log(years);
+    return years;
 }
 
 function getArtistDiscovery(data) {
@@ -284,12 +332,6 @@ function getArtistDiscovery(data) {
 
     //at this point, artists is now an array of the first album the user saved from a particular artist
     //each object contains the album, artist and date added
-    /*
-    artists.sort(function (a, b) {
-        if (a.date_added > b.date_added) return 1;
-        else if (a.date_added < b.date_added) return -1;
-        else return 0;
-    });*/
 
     //now create an array of year objects, each year object has an array of month objects,
     //each month object has a frequency of artists in that month, and an array of artist objects discovered
@@ -338,11 +380,12 @@ function getArtistDiscovery(data) {
     console.log("Artists: ");
     //console.log(artists);
 
-    console.log(years);
+    //console.log(years);
     console.log(freq);
     
     
-    return freq;
+    //return freq;
+    return years;
 }
 
 function getDatesAdded (data) {
@@ -474,15 +517,24 @@ async function getAllGenres (data) {
         let temp = genres.filter(function (a) {
             //return a.includes(genre)
             if (a.includes(genre)) {
-                return true
+                //genres.splice(genres.indexOf(a), 1);
+                //console.log(a);
+                return true;
             }
+            return false;
         })
         Freq.push(temp.length);
         genreHead.push(genre);
         simpleGenres.push(temp);
 
     }
+
+    //other category
+    //genreHead.push("Other");
+    //Freq.push(genres.length);
+
     console.log(simpleGenres);
+    console.log(genres);
 
     console.log(genreFreq);
     console.log(genreHead);
