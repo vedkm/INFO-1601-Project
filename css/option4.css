@@ -75,13 +75,12 @@ body{
 }
 
 .chart-container{
-  align-items: center;
-  display:flex;
-  flex-direction:row;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 150px;
   position:relative;
-  height:80vh;
-  width:80vw;
+  height: 80vh;
+  width: 90%;
 }
 
 /* The sidebar menu */
@@ -150,6 +149,12 @@ body{
 
 /* END OF SIDEBAR */
 
+.buttoncontainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .buttonclass{
   font-family: "Josefin Sans", sans-serif;
   font-size: 35px;
@@ -162,6 +167,8 @@ body{
   border-radius: 50px;
   margin-top: 10px;
   margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   transition-duration: 0.4s;
 }
 
@@ -191,7 +198,7 @@ body {
   }
 
   .chart-container{
-    width:100vw;
+    width: 90vw;
   }
 
   #right-section{

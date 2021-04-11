@@ -14,10 +14,11 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
 	<link href="../css/option4.css" rel="stylesheet" type="text/css" />
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Open+Sans&display=swap" rel="stylesheet">
-	<title>SpotStats</title>
+	<title>SpotStats - Music Discovery</title>
 </head>
 
 <body onload="initMusicDiscovery()">
@@ -67,7 +68,7 @@
 				<!--<canvas id="discoveryChart"></canvas>-->
 				
 			</div>
-			<span >
+			<span class="buttoncontainer">
 				<input type="button" value="Artists" id="artist-button" class="buttonclass">
 				<input type="button" value="Albums" id="album-button" class="buttonclass">
 			</span>
@@ -97,13 +98,21 @@
 		
 		//style="background-color: #637aff" in html
 		let colorArray = [
-			"#000",
-			"#ff6f63",
-			"#ffb963",
-			"#ff7563",
-			"#ff63f7",
-			"#a163ff",
-			"#637aff"
+			"#FF0000",
+			"#800000",
+			"#FFFF00",
+			"#808000",
+			"#00FF00",
+			"#008000",
+			"#00FFFF",
+			"#008080",
+			"#0000FF",
+			"#000080",
+			"#FF00FF",
+			"#800080",
+			"#000000",
+			"#808080",
+			"#C0C0C0"
 		];
 
 		var type = "Artist"	//default
@@ -154,7 +163,8 @@
 									family: "'Open Sans', sans-serif",
 									size: 15
 								},
-								color: 'black'
+								color: 'black',
+								boxWidth: 15
 							}
 						}
 					}

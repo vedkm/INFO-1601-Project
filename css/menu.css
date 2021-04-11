@@ -118,7 +118,7 @@ img:hover{
 }
 
 .nav-links li a{
-  font-family: 'open-sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: white;
   border-bottom-color: black;
   text-decoration: none;
@@ -170,7 +170,7 @@ img:hover{
     align-items: center;
     flex-direction: column;
     z-index: 1;
-    font-family: sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: bolder;
     position: fixed;
     top:0;
@@ -259,7 +259,7 @@ img:hover{
     align-items: center;
     flex-direction: column;
     z-index: 1;
-    font-family: sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: bolder;
     position: fixed;
     top:0;
