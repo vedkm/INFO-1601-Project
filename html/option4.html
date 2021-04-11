@@ -97,7 +97,7 @@
 		
 		//style="background-color: #637aff" in html
 		let colorArray = [
-			"#ffffff",
+			"#000",
 			"#ff6f63",
 			"#ffb963",
 			"#ff7563",
@@ -111,7 +111,7 @@
 
 		function renderChart (years) {
 
-			document.querySelector(".chart-container").innerHTML = `<canvas id="discoveryChart"></canvas>`;  
+			document.querySelector(".chart-container").innerHTML = `<canvas id="discoveryChart" style="background-color: #fff"></canvas>`;  
 			let discoveryChart = document.getElementById('discoveryChart').getContext('2d');
 
 			let data = new Array();

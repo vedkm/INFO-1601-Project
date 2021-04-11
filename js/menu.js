@@ -40,6 +40,8 @@ async function createPlaylist(data) {
 
     console.log(playlist);
 
+    
+
 }
 
 function renderList(data, type) {
