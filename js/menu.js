@@ -572,9 +572,12 @@ async function getAllGenres (data) {
             }
             return false;
         })
-        Freq.push(temp.length);
-        genreHead.push(genre);
-        simpleGenres.push(temp);
+        //to prevent empty genres
+        if (temp.length > 0) {
+            Freq.push(temp.length);
+            genreHead.push(genre);
+            simpleGenres.push(temp);
+        }
 
     }
 
