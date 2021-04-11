@@ -5,7 +5,6 @@ function onPageLoad () {
     }
 }
 
-
 async function createPlaylist(data) {
     //make create playlist request first
     let userid = window.localStorage.getItem("userid");
@@ -13,7 +12,7 @@ async function createPlaylist(data) {
     let endpoint = `https://api.spotify.com/v1/users/${userid}/playlists`;
     let query = "";
     let body = {
-        "name": `${username}`,
+        "name": `${username}'s Top 50 songs`,
         "public": 'true',
         "description": `A playlist of ${username}'s top 50 songs of all time.`
     };
@@ -40,6 +39,8 @@ async function createPlaylist(data) {
     playlist = await callAPI("POST", endpoint, "", body);
 
     console.log(playlist);
+
+    
 
 }
 
