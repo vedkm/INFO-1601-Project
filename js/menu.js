@@ -172,7 +172,7 @@ function getDecades(data) {
         let index = decades.indexOf(group);
         let howmany = identicalDecades.length;
         decades.splice(index+1,howmany-1);
-        decadeHead.push(group);
+        decadeHead.push(group+"'s");
         frequency.push(identicalDecades.length);
     }
 
@@ -187,6 +187,7 @@ function getDecades(data) {
         else if (frequency[start] < frequency[end]) return -1
         else return 0
     });
+    
     //sort frequency
     frequency.sort(function (a, b) {
         if (a > b) return 1

@@ -115,7 +115,7 @@
 			"#000080",
 			"#FF00FF",
 			"#800080",
-			"#000000",
+			"#FFFFFF",
 			"#808080",
 			"#C0C0C0"
 		];
@@ -125,7 +125,7 @@
 
 		function renderChart (years) {
 
-			document.querySelector(".chart-container").innerHTML = `<canvas id="discoveryChart" style="background-color: #fff"></canvas>`;  
+			document.querySelector(".chart-container").innerHTML = `<canvas id="discoveryChart" style="background-color: #000"></canvas>`;  
 			let discoveryChart = document.getElementById('discoveryChart').getContext('2d');
 
 			let data = new Array();
@@ -149,6 +149,20 @@
 					datasets: data
 				},
 				options: {
+					scales: {
+						x: {
+							grid:{
+								borderColor: 'white',
+								color: 'grey'
+							}
+						},
+						y: {
+							grid: {
+								borderColor: 'white',
+								color: 'grey'
+							}
+						}
+					},
 					responsive: true,
 					maintainAspectRatio: false,
 					plugins: {
@@ -159,7 +173,7 @@
 								family: "'Open Sans', sans-serif",
 								size: 20
 							},
-							color: 'black'
+							color: 'white'
 						},
 						legend: {
 							display: true,
@@ -168,7 +182,7 @@
 									family: "'Open Sans', sans-serif",
 									size: 15
 								},
-								color: 'black',
+								color: 'white',
 								boxWidth: 15
 							}
 						}
