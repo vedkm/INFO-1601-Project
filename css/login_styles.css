@@ -58,6 +58,17 @@ p{
   flex-direction: column;
 }
 
+#know-more-button:hover{
+  border-radius: 25px;
+  background: rgb(51,136,34);
+  transition: ease-in 0.2s;
+  font-weight: bold;
+  color: white;
+  background: rgba(0,144,173,1);
+  box-shadow: inset 150px 0 0 0 #009e0b;
+  transition: ease-out 0.25s;
+  transition-delay: 0.15s;
+}
 
 #left-section{
   width: 70%;
