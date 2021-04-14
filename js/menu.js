@@ -818,17 +818,20 @@ function handleRedirect() {
 }
 
 const client_id = localStorage.getItem("client_id");
-const client_secret = localStorage.getItem("client_secret");
 const redirect_uri = localStorage.getItem("redirect_uri");
+const verifier = localStorage.getItem("verifier");
 //const scopes = "user-read-private user-library-read user-top-read playlist-modify-private playlist-modify-public";
 
+
 function fetchAccessToken(code) {
-    let body = "grant_type=authorization_code";
+    let body = "client_id=" + client_id;
+    body += "&grant_type=authorization_code";
     body += "&code=" + code;
     body += "&redirect_uri=" + encodeURI(redirect_uri);
-    body += "&client_id=" + client_id;
-    body += "&client_secret=" + client_secret;
+    body += "&code_verifier=" + verifier;
     
+
+
     callAuthApi(body);
 }
 
@@ -839,7 +842,7 @@ function callAuthApi(body) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", token, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(client_id + ":" + client_secret));
+    //xhr.setRequestHeader("Authorization", "Basic " + btoa(client_id + ":" + client_secret));
     xhr.send(body);
     xhr.onload = handleAuthResponse;
     
@@ -866,6 +869,7 @@ function handleAuthResponse() {
         refreshAccessToken();
     }
     else if (this.status === 400) {
+        //window.alert(this.responseText);
         window.location.href = "/index.html";
     }
     else {
@@ -892,6 +896,7 @@ async function getUsername() {
 function getCode () {
     let code = null;
     const qString = window.location.search;
+    //console.log(qString);
     if (qString.length > 0) {
         const urlParams = new URLSearchParams (qString);
         code = urlParams.get('code');
