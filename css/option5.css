@@ -297,6 +297,11 @@ body {
     transform: translate(-5%,-50%);
     z-index: 3;
   }
+
+  
+  #right-section-body input{
+    font-size: 1em;
+  }
 }
 
 .body {
