@@ -479,8 +479,9 @@ function getReleaseDates (data) {
     return dates;
 }
 
-async function getGenre(id) {
+async function getGenres(id) {
     let endpoint = "https://api.spotify.com/v1/artists/" + id;
+
     let artist = await callAPI("GET", endpoint, "");
 
     let genre = artist.genres;
@@ -493,14 +494,29 @@ async function getAllGenres (data) {
     let artists = getAllArtists(data);
 
     let allGenres = new Array();
+    let endpoint = "https://api.spotify.com/v1/artists?ids=";
+    
 
-    for (let artist of artists) {
-        let artistGenres = await getGenre(artist.id);
-        for (let genre of artistGenres) {
-            allGenres.push(genre);
+    //array of ids
+    for (let i = 0; i < artists.length; i += 50) {
+        let query = new Array();
+        let x = 0;
+        while (x < 50 && x+i < artists.length) {
+            query.push(artists[x+i].id);
+            x++;
         }
-        //console.log(genre);
+        
+        query.join();
+        let temp = await callAPI("GET", endpoint, query);
+        console.log(temp.artists);
+        for (let artist of temp.artists) {
+            for (genre of artist.genres) {
+                allGenres.push(genre);
+            }
+        }
     }
+
+    //console.log(allGenres);
 
     allGenres.sort();
 
@@ -509,8 +525,6 @@ async function getAllGenres (data) {
         return genre;
     });
 
-
-    let genreFreq = new Array();
     let genreHead = new Array(); 
     let Freq = new Array();
 
@@ -589,7 +603,6 @@ async function getAllGenres (data) {
     console.log(simpleGenres);
     console.log(genres);
 
-    console.log(genreFreq);
     console.log(genreHead);
     console.log(Freq);
 
